@@ -74,60 +74,80 @@ function getLocation() {
 
             const temp_e = document.getElementById("temp-c");
             const weather = document.getElementById("weather");
+            const icons = document.getElementById("w-icon")
             temp_e.textContent = temp + "℃";
             switch (wc) {
                 case 0:
                     weather.textContent = "Clear Sky";
+                    icons.textContent = "clear_day";
                     break;
                 case 1:
                     weather.textContent = "Mainly clear";
+                    icons.textContent = "partly_cloudy_day";
                     break;
                 case 2:
                     weather.textContent = "Partly Cloudy";
+                    icons.textContent = "partly_cloudy_day";
                     break;
                 case 3: 
                     weather.textContent = "Overcast";
+                    icons.textContent = "cloud";
                     break;
                 case 45, 48:
                     weather.textContent = "Foggy";
+                    icons.textContent = "foggy";
                     break;
                 case 51:
                     weather.textContent = "Light Drizzle";
+                    icons.textContent = "rainy_light";
                     break;
                 case 53:
                     weather.textContent = "Moderate Drizzle";
+                    icons.textContent = "rainy_light";
                     break;
                 case 55:
                     weather.textContent = "Dense Drizzle";
+                    icons.textContent = "rainy";
                     break;
                 case 56, 57:
                     weather.textContent = "Freezing Drizzle";
+                    icons.textContent = "rainy";
                     break;
                 case 61:
                     weather.textContent = "Slightly Rainy";
+                    icons.textContent = "rainy_light";
                     break;
                 case 63, 80, 81:
                     weather.textContent = "Moderately Rainy";
+                    icons.textContent = "rainy_light";
                     break;
                 case 65, 82:
                     weather.textContent = "Heavy Rain";
+                    icons.textContent = "rainy";
                     break;
                 case 66, 67:
                     weather.textContent = "Freezing Rain";
+                    icons.textContent = "rainy";
                     break;
                 case 71:
                     weather.textContent = "Slight Snow fall";
+                    icons.textContent = "snowing";
                     break;
                 case 73, 85:
                     weather.textContent = "Moderate Snow fall";
+                    icons.textContent = "snowing";
                     break;
                 case 75, 86:
                     weather.textContent = "Heavy Snow fall";
+                    icons.textContent = "snowing_heavy";
                     break;
                 case 77:
                     weather.textContent = "Snowy";
+                    icons.textContent = "weather_snowy";
                     break;
                 default:
+                    weather.textContent = "N/A"
+                    icons.textContent = "N/A"
                     break;
             }
         }, (error) => {
