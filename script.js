@@ -92,7 +92,7 @@ function getLocation() {
         {
             enableHighAccuracy : false,
             timeout : timeout,
-            maximumAge : 30000
+            maximumAge : 300000
         }
     )
 }
