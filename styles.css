@@ -20,15 +20,10 @@ body {
 .caption {
     font-size: medium;
 }
-#city {
-    font-size: xx-large;
-    margin-top: 0px;
-    margin-bottom: -15px;
-}
 #country {
     font-size: larger;
 }
-#temp-c {
+.values {
     font-size: xx-large;
     margin-top: 0px;
     margin-bottom: -15px;
