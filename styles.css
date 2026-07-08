@@ -11,13 +11,13 @@ body {
 #row1 {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-left: 100px;
 }
 #location {
     text-align: center;
 }
-#caption {
+.caption {
     font-size: medium;
 }
 #city {
@@ -27,4 +27,12 @@ body {
 }
 #country {
     font-size: larger;
+}
+#temp {
+    text-align: center;
+}
+#temp-c {
+    font-size: xx-large;
+    margin-top: 0px;
+    margin-bottom: -15px;
 }
