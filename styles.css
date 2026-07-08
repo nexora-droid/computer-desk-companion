@@ -16,6 +16,7 @@ body {
 .widget-r1 {
     text-align: center;
     margin: 0px;
+    width: 250px
 }
 .caption {
     font-size: medium;
