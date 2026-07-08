@@ -5,7 +5,27 @@ let lat;
 let long;
 console.log("loaded")
 document.addEventListener("DOMContentLoaded", ()=>{
-    alert("We use your location for approximate location detection, and weather statistics");
+    if (navigator.permissions) {
+        navigator.permissions.query({name: "geolocation"})
+            .then(function(result) {
+                if (result.state == "granted") {
+                    return;
+                } else if (result.state == "prompt") {
+                    alert("We use your location for approximate location detection, and weather statistics");
+                } else {
+                    const temp_e = document.getElementById("temp-c"); 
+                    temp_e.textContent = "Permission Denied";
+                    temp_e.style.fontSize = "medium";
+                    country.textContent = "Permission Denied"
+                    country.style.fontSize = "small";
+                    city.textContent = "Permission Denied";
+                    city.style.fontSize = "medium";
+                    const weather = document.getElementById("weather");
+                    weather.textContent = "Permission Denied";
+                    weather.style.fontSize = "medium";
+                }
+            })
+    }
     fetch("https://api.ipapi.is/")
         .then(res => res.json())
         .then(data => {
@@ -68,7 +88,7 @@ function getLocation() {
         }, 
         {
             enableHighAccuracy : false,
-            timeout : 5000,
+            timeout : 10000,
             maximumAge : 30000
         }
     )
