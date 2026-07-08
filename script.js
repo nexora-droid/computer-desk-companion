@@ -101,7 +101,7 @@ function checkVisited() {
         localStorage.setItem("hasVisited", true);
         timeout = 60000;
     } else {
-        timeout = 20000;
+        timeout = 30000;
     }
     return timeout;
 }
