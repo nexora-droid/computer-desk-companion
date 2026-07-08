@@ -51,7 +51,25 @@ function getLocation() {
             const temp_e = document.getElementById("temp-c"); 
             temp_e.textContent = temp + "℃";
         }, (error) => {
-            console.error("GPS_ERROR:", error.code, error.message);
+            console.error(error);
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    console.log("User denied permissions");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    console.log("Location unavailable");
+                    break;
+                case error.TIMEOUT:
+                    console.log("Location request took too long");
+                    break;
+                default:
+                    console.log("Unknown error");
+            }
+        }, 
+        {
+            enableHighAccuracy : false,
+            timeout : 5000,
+            maximumAge : 30000
         }
     )
 }
