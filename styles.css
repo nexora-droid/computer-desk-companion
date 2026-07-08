@@ -14,7 +14,7 @@ body {
     justify-content: space-evenly;
     margin-left: 100px;
 }
-#location {
+.widget-r1 {
     text-align: center;
 }
 .caption {
@@ -27,9 +27,6 @@ body {
 }
 #country {
     font-size: larger;
-}
-#temp {
-    text-align: center;
 }
 #temp-c {
     font-size: xx-large;
