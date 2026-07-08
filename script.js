@@ -98,7 +98,7 @@ function getLocation() {
 function checkVisited() {
     if (!localStorage.getItem("hasVisited")){
         localStorage.setItem("hasVisited", true);
-        timeout = 30000;
+        timeout = 60000;
     } else {
         timeout = 20000;
     }
