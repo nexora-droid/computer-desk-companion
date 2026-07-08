@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         })*/
 });
 function getLocation() {
+    console.log("fetching")
     navigator.geolocation.getCurrentPosition(
         async(position) => {
             console.log("func called");
