@@ -12,7 +12,6 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-left: 100px;
 }
 .widget-r1 {
     text-align: center;
