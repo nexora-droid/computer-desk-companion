@@ -3,8 +3,10 @@ const city = document.getElementById("city");
 const country = document.getElementById("country");
 let lat;
 let long;
+let timeout;
 console.log("loaded")
 document.addEventListener("DOMContentLoaded", ()=>{
+    checkVisited()
     if (navigator.permissions) {
         navigator.permissions.query({name: "geolocation"})
             .then(function(result) {
@@ -88,9 +90,18 @@ function getLocation() {
         }, 
         {
             enableHighAccuracy : false,
-            timeout : 15000,
+            timeout : timeout,
             maximumAge : 30000
         }
     )
+}
+function checkVisited() {
+    if (!localStorage.getItem("hasVisited")){
+        localStorage.setItem("hasVisited", true);
+        timeout = 30000;
+    } else {
+        timeout = 20000;
+    }
+    return;
 }
     
