@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }*/
-    fetch("/api/location")
+    fetch("https://api.ipapi.is/")
         .then((res) => res.json())
         .then((data) => {
         console.log(data.location.city);
