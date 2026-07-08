@@ -1,18 +1,17 @@
 const body = document.getElementById("body");
-const country = document.getElementById("location-data");
+const city = document.getElementById("city");
+const country = document.getElementById("country");
 document.addEventListener("DOMContentLoaded", ()=>{
-    fetch("https://ipapi.co/json/")
-    .then(response => response.json())
+    fetch("https://api.ipapi.is/")
+    .then(res => res.json())
     .then(data => {
-        console.log(data.city);
-        console.log(data.country_name);
-        console.log(data.latitude);
-        console.log(data.longitude);
-        city.textContent = data.city;
-        if (data.city == data.country_name) {
-            country.textContent = " ";
+        console.log(data.location.city);
+        console.log(data.location.country);
+        city.textContent = data.location.city;
+        if (data.location.city == data.location.country) {
+            country.hidden = true;
         } else {
-            country.textContent = data.country_name;
+            country.textContent = data.location.country;
         }
     });
 });
