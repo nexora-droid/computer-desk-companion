@@ -66,13 +66,70 @@ function getLocation() {
             );
             console.log(response.status);
             const data = await response.json();
-            console.log(data)
             const hour = new Date().getHours();
+
             const temp = data.hourly.temperature_2m[hour];
             const wc = data.hourly.weather_code[hour];
             const day = Boolean(data.hourly.is_day[hour]);
-            const temp_e = document.getElementById("temp-c"); 
+
+            const temp_e = document.getElementById("temp-c");
+            const weather = document.getElementById("weather");
             temp_e.textContent = temp + "℃";
+            switch (wc) {
+                case 0:
+                    weather.textContent = "Clear Sky";
+                    break;
+                case 1:
+                    weather.textContent = "Mainly clear";
+                    break;
+                case 2:
+                    weather.textContent = "Partly Cloudy";
+                    break;
+                case 3: 
+                    weather.textContent = "Overcast";
+                    break;
+                case 45, 48:
+                    weather.textContent = "Foggy";
+                    break;
+                case 51:
+                    weather.textContent = "Light Drizzle";
+                    break;
+                case 53:
+                    weather.textContent = "Moderate Drizzle";
+                    break;
+                case 55:
+                    weather.textContent = "Dense Drizzle";
+                    break;
+                case 56, 57:
+                    weather.textContent = "Freezing Drizzle";
+                    break;
+                case 61:
+                    weather.textContent = "Slightly Rainy";
+                    break;
+                case 63, 80, 81:
+                    weather.textContent = "Moderately Rainy";
+                    break;
+                case 65, 82:
+                    weather.textContent = "Heavy Rain";
+                    break;
+                case 66, 67:
+                    weather.textContent = "Freezing Rain";
+                    break;
+                case 71:
+                    weather.textContent = "Slight Snow fall";
+                    break;
+                case 73, 85:
+                    weather.textContent = "Moderate Snow fall";
+                    break;
+                case 75, 86:
+                    weather.textContent = "Heavy Snow fall";
+                    break;
+                case 77:
+                    weather.textContent = "Snowy";
+                    break;
+                default:
+                    break;
+            }
         }, (error) => {
             console.error(error);
             switch(error.code) {
