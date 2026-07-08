@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 });
 function getLocation() {
     console.log("fetching")
+    console.log("timeout value:", timeout)
     navigator.geolocation.getCurrentPosition(
         async(position) => {
             console.log("func called");
@@ -102,6 +103,6 @@ function checkVisited() {
     } else {
         timeout = 20000;
     }
-    return;
+    return timeout;
 }
     
