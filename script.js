@@ -74,7 +74,7 @@ function getLocation() {
 
             const temp_e = document.getElementById("temp-c");
             const weather = document.getElementById("weather");
-            const icons = document.getElementById("w-icon")
+            const icons = document.getElementById("weather-icon")
             temp_e.textContent = temp + "℃";
             switch (wc) {
                 case 0:
