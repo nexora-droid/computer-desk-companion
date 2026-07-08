@@ -5,6 +5,7 @@ let lat;
 let long;
 console.log("loaded")
 document.addEventListener("DOMContentLoaded", ()=>{
+    alert("We use your location for approximate location detection, and weather statistics");
     fetch("https://api.ipapi.is/")
         .then(res => res.json())
         .then(data => {
