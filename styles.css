@@ -43,6 +43,6 @@ p {
 }
 .content {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 20px;
 }
