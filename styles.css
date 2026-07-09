@@ -38,3 +38,6 @@ body {
 #time-icon {
     font-size: 50px;
 }
+#temp-c {
+    margin-bottom: 5px;
+}
