@@ -72,12 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const day = Boolean(data.hourly.is_day[hour]);
 
         const temp_e = document.getElementById("temp-c");
+        const temp_f = document.getElementById("temp-f");
         const weather = document.getElementById("weather");
         const weatherIcon = document.getElementById("weather-icon");
         const timeIcon = document.getElementById("time-icon");
         const dayNight = document.getElementById("daynight");
-        temp_e.textContent = temp + "℃";
-        temp_e.textContent = toFarenheit(temp) + "℉";
+        temp_e.textContent = Math.round(temp) + "℃";
+        temp_f.textContent = toFarenheit(temp) + "℉";
         switch (wc) {
             case 0:
             weather.textContent = "Clear Sky";
