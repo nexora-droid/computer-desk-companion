@@ -36,13 +36,22 @@
             <div class="widget">
                 <p class="caption">Birthday in...</p>
                 <p class="values" id="event-countdown">3 days</p>
-                <button class="caption">Add event</button>
+                <button class="caption" id="event-add">Add event</button>
             </div>
             <div class="widget">
                 <p class="caption">Time</p>
                 <p class="values" id="clock"></p>
             </div>
         </div>
+    </div>
+    <div id="event-form">
+        <form>
+            <label for="name">Enter Event name</label>
+            <input type="text" placeholder="Event name..." id="name" name="name">
+            <label for="date">Enter Date of Event</label>
+            <input type="date" id="date" name="date">
+            <input type="sumbit">
+        </form>
     </div>
     <script src="script.js"></script>
 </body>

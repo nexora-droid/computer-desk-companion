@@ -42,8 +42,17 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    gap: 75px;
+    gap: 50px;
 }
 #event-countdown {
-    margin-bottom: 0px !important;
+    margin-bottom: 5px !important;
+}
+#event-add {
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+    border-radius: 15px;
+    width: 150px;
+    height: 40px;
+    padding: 2px;
 }
