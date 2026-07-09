@@ -176,6 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
         }
     }
+    setInterval(getLocation, 900000)
     //console.log("timeout value:", timeout)
     /*navigator.geolocation.getCurrentPosition(
             async(position) => {
