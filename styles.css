@@ -28,8 +28,7 @@ body {
     font-size: larger;
 }
 .values {
-    font-size: 50px;
-    margin-top: 0px;
+    font-size: 45px;
     margin-bottom: -15px;
 }
 #weather-icon{
@@ -37,7 +36,4 @@ body {
 }
 #time-icon {
     font-size: 50px;
-}
-#temp-c {
-    margin-bottom: 5px;
 }
