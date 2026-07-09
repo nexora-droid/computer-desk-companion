@@ -37,11 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(data.location.city);
         console.log(data.location.country);
         city.textContent = data.location.city;
-        if (data.location.city == data.location.country) {
+        country.textContent = data.location.country;
+        /*(if (data.location.city == data.location.country) {
             country.hidden = true;
         } else {
             country.textContent = data.location.country;
-        }
+        }*/
         lat = data.location.latitude;
         long = data.location.longitude;
         getLocation()
@@ -58,120 +59,121 @@ document.addEventListener("DOMContentLoaded", () => {
             })*/
     });
     async function getLocation() {
-    console.log("fetching");
-    console.log(lat, long);
-    const response = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m,weather_code,visibility,relative_humidity_2m,is_day&forecast_days=1&timezone=auto`,
-    );
-    console.log(response.status);
-    const data = await response.json();
-    const hour = new Date().getHours();
-    const temp = data.hourly.temperature_2m[hour];
-    const wc = data.hourly.weather_code[hour];
-    const day = Boolean(data.hourly.is_day[hour]);
+        console.log("fetching");
+        console.log(lat, long);
+        const response = await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m,weather_code,visibility,relative_humidity_2m,is_day&forecast_days=1&timezone=auto`,
+        );
+        console.log(response.status);
+        const data = await response.json();
+        const hour = new Date().getHours();
+        let temp = data.hourly.temperature_2m[hour];
+        const wc = data.hourly.weather_code[hour];
+        const day = Boolean(data.hourly.is_day[hour]);
 
-    const temp_e = document.getElementById("temp-c");
-    const weather = document.getElementById("weather");
-    const weatherIcon = document.getElementById("weather-icon");
-    const timeIcon = document.getElementById("time-icon");
-    const dayNight = document.getElementById("daynight");
-    temp_e.textContent = temp + "℃";
-    switch (wc) {
-        case 0:
-        weather.textContent = "Clear Sky";
-        weatherIcon.textContent = "clear_day";
-        break;
-        case 1:
-        weather.textContent = "Mainly clear";
-        weatherIcon.textContent = "partly_cloudy_day";
-        break;
-        case 2:
-        weather.textContent = "Partly Cloudy";
-        weatherIcon.textContent = "partly_cloudy_day";
-        break;
-        case 3:
-        weather.textContent = "Overcast";
-        weatherIcon.textContent = "cloud";
-        break;
-        case 45:
-        case 48:
-        weather.textContent = "Foggy";
-        weatherIcon.textContent = "foggy";
-        break;
-        case 51:
-        weather.textContent = "Light Drizzle";
-        weatherIcon.textContent = "rainy_light";
-        break;
-        case 53:
-        weather.textContent = "Moderate Drizzle";
-        weatherIcon.textContent = "rainy_light";
-        break;
-        case 55:
-        weather.textContent = "Dense Drizzle";
-        weatherIcon.textContent = "rainy";
-        break;
-        case 56:
-        case 57:
-        weather.textContent = "Freezing Drizzle";
-        weatherIcon.textContent = "rainy";
-        break;
-        case 61:
-        weather.textContent = "Slightly Rainy";
-        weatherIcon.textContent = "rainy_light";
-        break;
-        case 63:
-        case 80:
-        case 81:
-        weather.textContent = "Moderately Rainy";
-        weatherIcon.textContent = "rainy_light";
-        break;
-        case 65:
-        case 82:
-        weather.textContent = "Heavy Rain";
-        weatherIcon.textContent = "rainy";
-        break;
-        case 66:
-        case 67:
-        weather.textContent = "Freezing Rain";
-        weatherIcon.textContent = "rainy";
-        break;
-        case 71:
-        weather.textContent = "Slight Snow fall";
-        weatherIcon.textContent = "snowing";
-        break;
-        case 73:
-        case 85:
-        weather.textContent = "Moderate Snow fall";
-        weatherIcon.textContent = "snowing";
-        break;
-        case 75:
-        case 86:
-        weather.textContent = "Heavy Snow fall";
-        weatherIcon.textContent = "snowing_heavy";
-        break;
-        case 77:
-        weather.textContent = "Snowy";
-        weatherIcon.textContent = "weather_snowy";
-        break;
-        default:
-        weather.textContent = "N/A";
-        weatherIcon.textContent = "N/A";
-        break;
-    }
-    switch (day) {
-        case true:
-            timeIcon.textContent = "wb_sunny";
-            dayNight.textContent = "Day";
+        const temp_e = document.getElementById("temp-c");
+        const weather = document.getElementById("weather");
+        const weatherIcon = document.getElementById("weather-icon");
+        const timeIcon = document.getElementById("time-icon");
+        const dayNight = document.getElementById("daynight");
+        temp_e.textContent = temp + "℃";
+        temp_e.textContent = toFarenheit(temp) + "℉";
+        switch (wc) {
+            case 0:
+            weather.textContent = "Clear Sky";
+            weatherIcon.textContent = "clear_day";
             break;
-        case false:
-            timeIcon.textContent = "moon_stars";
-            dayNight.textContent = "Night"
+            case 1:
+            weather.textContent = "Mainly clear";
+            weatherIcon.textContent = "partly_cloudy_day";
             break;
-        default:
-            timeIcon.textContent = "pending";
-            dayNight.textContent = "Loading API";
+            case 2:
+            weather.textContent = "Partly Cloudy";
+            weatherIcon.textContent = "partly_cloudy_day";
             break;
-    }
+            case 3:
+            weather.textContent = "Overcast";
+            weatherIcon.textContent = "cloud";
+            break;
+            case 45:
+            case 48:
+            weather.textContent = "Foggy";
+            weatherIcon.textContent = "foggy";
+            break;
+            case 51:
+            weather.textContent = "Light Drizzle";
+            weatherIcon.textContent = "rainy_light";
+            break;
+            case 53:
+            weather.textContent = "Moderate Drizzle";
+            weatherIcon.textContent = "rainy_light";
+            break;
+            case 55:
+            weather.textContent = "Dense Drizzle";
+            weatherIcon.textContent = "rainy";
+            break;
+            case 56:
+            case 57:
+            weather.textContent = "Freezing Drizzle";
+            weatherIcon.textContent = "rainy";
+            break;
+            case 61:
+            weather.textContent = "Slightly Rainy";
+            weatherIcon.textContent = "rainy_light";
+            break;
+            case 63:
+            case 80:
+            case 81:
+            weather.textContent = "Moderately Rainy";
+            weatherIcon.textContent = "rainy_light";
+            break;
+            case 65:
+            case 82:
+            weather.textContent = "Heavy Rain";
+            weatherIcon.textContent = "rainy";
+            break;
+            case 66:
+            case 67:
+            weather.textContent = "Freezing Rain";
+            weatherIcon.textContent = "rainy";
+            break;
+            case 71:
+            weather.textContent = "Slight Snow fall";
+            weatherIcon.textContent = "snowing";
+            break;
+            case 73:
+            case 85:
+            weather.textContent = "Moderate Snow fall";
+            weatherIcon.textContent = "snowing";
+            break;
+            case 75:
+            case 86:
+            weather.textContent = "Heavy Snow fall";
+            weatherIcon.textContent = "snowing_heavy";
+            break;
+            case 77:
+            weather.textContent = "Snowy";
+            weatherIcon.textContent = "weather_snowy";
+            break;
+            default:
+            weather.textContent = "N/A";
+            weatherIcon.textContent = "N/A";
+            break;
+        }
+        switch (day) {
+            case true:
+                timeIcon.textContent = "wb_sunny";
+                dayNight.textContent = "Day";
+                break;
+            case false:
+                timeIcon.textContent = "moon_stars";
+                dayNight.textContent = "Night"
+                break;
+            default:
+                timeIcon.textContent = "pending";
+                dayNight.textContent = "Loading API";
+                break;
+        }
     }
     //console.log("timeout value:", timeout)
     /*navigator.geolocation.getCurrentPosition(
@@ -292,7 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         )
     }*/
-    function checkVisited() {
+function checkVisited() {
     if (!localStorage.getItem("hasVisited")) {
         localStorage.setItem("hasVisited", true);
         timeout = 60000;
@@ -300,4 +302,8 @@ document.addEventListener("DOMContentLoaded", () => {
         timeout = 30000;
     }
     return timeout;
-    }
+}
+function toFarenheit(celcius) {
+    celcius = Math.round((celcius * 1.8) + 32)
+    return celcius;
+}
