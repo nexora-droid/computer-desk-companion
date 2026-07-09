@@ -41,3 +41,8 @@ p {
 #time-icon {
     font-size: 50px;
 }
+.content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
