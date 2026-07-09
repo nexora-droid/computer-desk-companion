@@ -29,6 +29,7 @@ body {
 }
 .values {
     font-size: 45px;
+    margin-top: 0px;
     margin-bottom: -15px;
 }
 #weather-icon{
