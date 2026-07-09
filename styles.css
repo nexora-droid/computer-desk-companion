@@ -44,5 +44,6 @@ p {
 .content {
     display: flex;
     flex-direction: column;
+    justify-content: start;
     gap: 100px;
 }
