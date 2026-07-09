@@ -16,7 +16,8 @@ body {
 .widget {
     display: flex;
     flex-direction: column;
-    justify-content:space-between;
+    gap: 10px;
+    align-items: center;
     text-align: center;
     margin: 0px;
     width: 250px
@@ -30,7 +31,6 @@ body {
 .values {
     font-size: 45px;
     margin-top: 0px;
-    margin-bottom: -15px;
 }
 #weather-icon{
     font-size: 50px;
