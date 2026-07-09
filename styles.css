@@ -11,12 +11,12 @@ p {
     font-size: xx-large;
     font-weight: bold;
 }
-#row1 {
+.row {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
-.widget-r1 {
+.widget {
     display: flex;
     flex-direction: column;
     justify-content:start;

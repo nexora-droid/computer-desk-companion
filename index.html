@@ -9,28 +9,33 @@
 </head>
 <body>
     <p id="title">Computer</p>
-    <div id="row1">
-        <div class="widget-r1">
+    <div class="row">
+        <div class="widget">
             <p class="caption">Location</p>
             <p id="city" class="values">N/A</p>
             <p id="country">N/A</p>
         </div>
-        <div class="widget-r1">
+        <div class="widget">
             <p class="caption">Temperature</p>
             <p id="temp-c" class="values">N/A</p>
             <p id="temp-f" class="caption">N/A</p>
         </div>
-        <div class="widget-r1">
+        <div class="widget">
             <p class="caption">Weather</p>
             <p id="w-icon" class="values"><span class="material-symbols-outlined" id="weather-icon">sunny</span></p>
             <p id="weather" class="caption">N/A</p>
         </div>
-        <div class="widget-r1">
+        <div class="widget">
             <p class="caption">It is...</p>
             <p id="t-icon" class="values"><span class="material-symbols-outlined" id="time-icon">pending</span></p>
             <p id="daynight" class="caption">Day</p>
         </div>
-
+    </div>
+    <div class="row">
+        <div class="widget">
+            <p class="caption">Time</p>
+            <p class="values" id="clock"></p>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
