@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const weather = document.getElementById("weather");
     const weatherIcon = document.getElementById("weather-icon");
     const timeIcon = document.getElementById("time-icon");
+    const dayNight = document.getElementById("daynight");
     temp_e.textContent = temp + "℃";
     switch (wc) {
         case 0:
@@ -160,12 +161,15 @@ document.addEventListener("DOMContentLoaded", () => {
     switch (day) {
         case true:
             timeIcon.textContent = "wb_sunny";
+            dayNight.textContent = "Day";
             break;
         case false:
             timeIcon.textContent = "moon_stars";
+            dayNight.textContent = "Night"
             break;
         default:
             timeIcon.textContent = "pending";
+            dayNight.textContent = "Loading API";
             break;
     }
     }
