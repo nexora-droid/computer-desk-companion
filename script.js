@@ -69,91 +69,104 @@ document.addEventListener("DOMContentLoaded", () => {
     const temp = data.hourly.temperature_2m[hour];
     const wc = data.hourly.weather_code[hour];
     const day = Boolean(data.hourly.is_day[hour]);
+
     const temp_e = document.getElementById("temp-c");
     const weather = document.getElementById("weather");
-    const icons = document.getElementById("weather-icon");
+    const weatherIcon = document.getElementById("weather-icon");
+    const timeIcon = document.getElementById("time-icon");
     temp_e.textContent = temp + "℃";
     switch (wc) {
         case 0:
         weather.textContent = "Clear Sky";
-        icons.textContent = "clear_day";
+        weatherIcon.textContent = "clear_day";
         break;
         case 1:
         weather.textContent = "Mainly clear";
-        icons.textContent = "partly_cloudy_day";
+        weatherIcon.textContent = "partly_cloudy_day";
         break;
         case 2:
         weather.textContent = "Partly Cloudy";
-        icons.textContent = "partly_cloudy_day";
+        weatherIcon.textContent = "partly_cloudy_day";
         break;
         case 3:
         weather.textContent = "Overcast";
-        icons.textContent = "cloud";
+        weatherIcon.textContent = "cloud";
         break;
         case 45:
         case 48:
         weather.textContent = "Foggy";
-        icons.textContent = "foggy";
+        weatherIcon.textContent = "foggy";
         break;
         case 51:
         weather.textContent = "Light Drizzle";
-        icons.textContent = "rainy_light";
+        weatherIcon.textContent = "rainy_light";
         break;
         case 53:
         weather.textContent = "Moderate Drizzle";
-        icons.textContent = "rainy_light";
+        weatherIcon.textContent = "rainy_light";
         break;
         case 55:
         weather.textContent = "Dense Drizzle";
-        icons.textContent = "rainy";
+        weatherIcon.textContent = "rainy";
         break;
         case 56:
         case 57:
         weather.textContent = "Freezing Drizzle";
-        icons.textContent = "rainy";
+        weatherIcon.textContent = "rainy";
         break;
         case 61:
         weather.textContent = "Slightly Rainy";
-        icons.textContent = "rainy_light";
+        weatherIcon.textContent = "rainy_light";
         break;
         case 63:
         case 80:
         case 81:
         weather.textContent = "Moderately Rainy";
-        icons.textContent = "rainy_light";
+        weatherIcon.textContent = "rainy_light";
         break;
         case 65:
         case 82:
         weather.textContent = "Heavy Rain";
-        icons.textContent = "rainy";
+        weatherIcon.textContent = "rainy";
         break;
         case 66:
         case 67:
         weather.textContent = "Freezing Rain";
-        icons.textContent = "rainy";
+        weatherIcon.textContent = "rainy";
         break;
         case 71:
         weather.textContent = "Slight Snow fall";
-        icons.textContent = "snowing";
+        weatherIcon.textContent = "snowing";
         break;
         case 73:
         case 85:
         weather.textContent = "Moderate Snow fall";
-        icons.textContent = "snowing";
+        weatherIcon.textContent = "snowing";
         break;
         case 75:
         case 86:
         weather.textContent = "Heavy Snow fall";
-        icons.textContent = "snowing_heavy";
+        weatherIcon.textContent = "snowing_heavy";
         break;
         case 77:
         weather.textContent = "Snowy";
-        icons.textContent = "weather_snowy";
+        weatherIcon.textContent = "weather_snowy";
         break;
         default:
         weather.textContent = "N/A";
-        icons.textContent = "N/A";
+        weatherIcon.textContent = "N/A";
         break;
+    }
+    switch (day) {
+        case true:
+            timeIcon.textContent = "wb_sunny";
+            break;
+        case false:
+            timeIcon.textContent = "moon_stars";
+            break;
+        default:
+            timeIcon.textContent = "pending";
+            break;
     }
     }
     //console.log("timeout value:", timeout)
