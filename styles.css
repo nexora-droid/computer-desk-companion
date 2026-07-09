@@ -18,7 +18,6 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: -10px;
     margin: 0px;
     width: 250px
 }
@@ -30,6 +29,7 @@ body {
 }
 .values {
     font-size: 45px;
+    margin-bottom: -15px;
     margin-top: 0px;
 }
 #weather-icon{
@@ -44,6 +44,6 @@ body {
     justify-content: start;
     gap: 75px;
 }
-/*#event-countdown {
+#event-countdown {
     margin-bottom: 0px !important;
-}*/
+}
