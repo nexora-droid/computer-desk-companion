@@ -360,13 +360,44 @@ document.getElementById("event-add").addEventListener("click", ()=> {
 })
 const batteryValue = document.getElementById("battery-value");
 const currentBatteryDiv = document.getElementById("current-battery");
+const chargingIcon = document.getElementById("charging-icon");
+/*
 function getBattery() {
     navigator.getBattery()
         .then(function(battery){
             var batteryLevel = Math.round(battery.level * 100);
             batteryValue.textContent = batteryLevel + "%";
             currentBatteryDiv.style.width = batteryLevel + "%";
+            battery.onchargingchange = () => {
+                chargingIcon.hidden = !chargingIcon.hidden;
+            }
+            battery.addEventListener("levelchange", getBattery);
+            battery.addEventListener("chargingchange", getBattery);
         })
 }
-getBattery();
-setInterval(getBattery, 1000);
+getBattery();*/
+if (navigator.getBattery) {
+    navigator.getBattery()
+        .then((battery) => {
+            function updateBattery() {
+                const batteryLevel = Math.round(battery.level * 100);
+                batteryValue.textContent = batteryLevel + "%";
+                currentBatteryDiv.style.width = batteryLevel + "%";
+                if (battery.charging) {
+                    chargingIcon.style.display = "block";
+                } else {
+                    chargingIcon.style.display = "none";
+                }
+            }
+            updateBattery()
+            console.log(battery.charging);
+            battery.addEventListener("levelchange", updateBattery);
+            battery.addEventListener("chargingchange", updateBattery);
+        })
+        .catch((err) => {
+            batteryValue.textContent = "N/A";
+            alert("Battery API error: " + err);
+        })
+} else {
+    batteryValue.textContent = "N/A";
+}
