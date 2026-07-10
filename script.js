@@ -3,6 +3,11 @@ const city = document.getElementById("city");
 const country = document.getElementById("country");
 const eventForm = document.getElementById("event-form");
 const eventDiv = document.getElementById("event-div"); // event-form parent
+const eventAdd = document.getElementsByClassName("event-add");
+const eventDelete = [document.getElementById("remove-1"), document.getElementById("remove-2"), document.getElementById("remove-3"), document.getElementById("remove-4")]
+const batteryValue = document.getElementById("battery-value");
+const currentBatteryDiv = document.getElementById("current-battery");
+const chargingIcon = document.getElementById("charging-icon");
 let lat;
 let long;
 let timeout;
@@ -338,29 +343,38 @@ eventForm.addEventListener("submit", (e)=>{
         date: date
     })
     localStorage.setItem("events", JSON.stringify(events));
-    const today = new Date();
-    const eventDate = new Date(date);
-    const diffMs = eventDate - today; // difference in millseconds
-    const daysLeft = Math.ceil(diffMs / (24 * 60 * 60 * 1000) ); // milliseconds to days
-    console.log(daysLeft);
-    const eventCountdown = document.getElementById("event-countdown");
-    const eventName = document.getElementById("event-name");
-    eventName.textContent = name + " in ...";
-    eventCountdown.textContent = daysLeft + " days";
+    displayEvents();
 
 })
+const eventCountdown = [document.getElementById("event-1"), document.getElementById("event-2"), document.getElementById("event-3"), document.getElementById("event-4") ]
+const eventNames = [document.getElementById("event-name-1"),document.getElementById("event-name-2"), document.getElementById("event-name-3"), document.getElementById("event-name-4") ]
 function displayEvents() {
+    for (let i = 0; i < events.length; i++) {
+        if (!events[i].date) {
+            eventNames[i].textContent = "No event";
+            eventCountdown[i].textContent = "---";
+            continue;
+        }
+        eventNames[i].textContent = events[i].name;
+        const today = new Date();
+        const eventDate = new Date(events[i].date);
+        const diffMs = eventDate - today; // difference in millseconds
+        const daysLeft = Math.ceil(diffMs / (24 * 60 * 60 * 1000) ); // milliseconds to days
+        //console.log(daysLeft);
+        eventNames[i].textContent = events[i].name + " in ...";
+        eventCountdown[i].textContent = daysLeft + " days";
 
+    }
+            
 }
 document.getElementById("close").addEventListener("click", ()=>{
     eventDiv.hidden = true;
-})
-document.getElementById("event-add").addEventListener("click", ()=> {
-    eventDiv.hidden = false;
-})
-const batteryValue = document.getElementById("battery-value");
-const currentBatteryDiv = document.getElementById("current-battery");
-const chargingIcon = document.getElementById("charging-icon");
+});
+document.querySelectorAll(".event-add").forEach(button => {
+    button.addEventListener("click", ()=>{
+        eventDiv.hidden = false;
+    })
+});
 /*
 function getBattery() {
     navigator.getBattery()
@@ -401,3 +415,20 @@ if (navigator.getBattery) {
 } else {
     batteryValue.textContent = "N/A";
 }
+for (let i = 0; i < eventDelete.length; i++ ) {
+    eventDelete[i].addEventListener("click", (e)=>{
+        const confirmed = confirm("This will delete the event. Are you sure you want to proceed?");
+        if (confirmed) {
+            console.log("Deletion Queued");
+            events[i] = {
+                name: "No event",
+                date: ""
+            }
+            localStorage.setItem("events", JSON.stringify(events));
+            displayEvents();
+        } else {
+            console.log("Deletion cancelled");
+        }
+    })
+}
+displayEvents();
