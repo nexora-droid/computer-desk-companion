@@ -358,3 +358,15 @@ document.getElementById("close").addEventListener("click", ()=>{
 document.getElementById("event-add").addEventListener("click", ()=> {
     eventDiv.hidden = false;
 })
+const batteryValue = document.getElementById("battery-value");
+const currentBatteryDiv = document.getElementById("current-battery");
+function getBattery() {
+    navigator.getBattery()
+        .then(function(battery){
+            var batteryLevel = Math.round(battery.level * 100);
+            batteryValue.textContent = batteryLevel + "%";
+            currentBatteryDiv.style.width = batteryLevel + "%";
+        })
+}
+getBattery();
+setInterval(getBattery, 1000);
