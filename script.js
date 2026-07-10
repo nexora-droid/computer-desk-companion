@@ -1,10 +1,14 @@
 const body = document.getElementById("body");
 const city = document.getElementById("city");
 const country = document.getElementById("country");
+const eventForm = document.getElementById("event-form");
+const eventDiv = document.getElementById("event-div"); // event-form parent
 let lat;
 let long;
 let timeout;
+let events = JSON.parse(localStorage.getItem("events")) || [];
 console.log("loaded");
+eventDiv.hidden = true;
 document.addEventListener("DOMContentLoaded", () => {
     /*checkVisited();
     if (navigator.permissions) {
@@ -320,3 +324,37 @@ function updateClock() {
 }
 updateClock()
 setInterval(updateClock, 1000)
+
+eventForm.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const date = document.getElementById("date").value;
+    if (events.length >= 4 ) {
+        alert("Maximum 4 events allowed!");
+        return;
+    }
+    events.push({
+        name: name,
+        date: date
+    })
+    localStorage.setItem("events", JSON.stringify(events));
+    const today = new Date();
+    const eventDate = new Date(date);
+    const diffMs = eventDate - today; // difference in millseconds
+    const daysLeft = Math.ceil(diffMs / (24 * 60 * 60 * 1000) ); // milliseconds to days
+    console.log(daysLeft);
+    const eventCountdown = document.getElementById("event-countdown");
+    const eventName = document.getElementById("event-name");
+    eventName.textContent = name + " in ...";
+    eventCountdown.textContent = daysLeft + " days";
+
+})
+function displayEvents() {
+
+}
+document.getElementById("close").addEventListener("click", ()=>{
+    eventDiv.hidden = true;
+})
+document.getElementById("event-add").addEventListener("click", ()=> {
+    eventDiv.hidden = false;
+})
