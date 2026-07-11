@@ -334,14 +334,22 @@ eventForm.addEventListener("submit", (e)=>{
     e.preventDefault();
     const name = document.getElementById("name").value;
     const date = document.getElementById("date").value;
-    if (events.length >= 4 ) {
+    const emptyIndex = events.findIndex(event => !event.date);
+    if (emptyIndex !== -1){
+        events[emptyIndex] = {
+            name: name,
+            date: date
+        };
+    } else {
+        if (events.length >= 4 ) {
         alert("Maximum 4 events allowed!");
         return;
+        }
+        events.push({
+            name: name,
+            date: date
+        })
     }
-    events.push({
-        name: name,
-        date: date
-    })
     localStorage.setItem("events", JSON.stringify(events));
     displayEvents();
 
