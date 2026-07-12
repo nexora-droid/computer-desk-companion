@@ -9,7 +9,7 @@
 </head>
 <body>
     <p id="title">Computer</p>
-    <div class="content">
+    <div id="content">
         <div class="row">
             <div class="widget">
                 <p class="caption">Location</p>
@@ -88,19 +88,29 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div id="event-div">
-        <div id="buttons">
-            <button id="close">X</button>
+        <div id="row-3">
+            <div id="left">
+
+            </div>
+            <div id="right">
+                
+            </div>
         </div>
-        <form id="event-form">
-            <label for="name">Enter Event name</label>
-            <input type="text" placeholder="Event name..." id="name" name="name">
-            <label for="date">Enter Date of Event</label>
-            <input type="date" id="date" name="date">
-            <input type="submit" value="send" id="send-button">
-        </form>
     </div>
+    <div id="overlay">
+        <div id="event-div">
+            <div id="buttons">
+                <button id="close">X</button>
+            </div>
+            <form id="event-form">
+                <label for="name">Enter Event name</label>
+                <input type="text" placeholder="Event name..." id="name" name="name">
+                <label for="date">Enter Date of Event</label>
+                <input type="date" id="date" name="date">
+                <input type="submit" value="send" id="send-button">
+            </form>
+        </div>
+    </div> 
     <script src="script.js"></script>
 </body>
 </html>

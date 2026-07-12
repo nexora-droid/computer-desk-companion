@@ -8,12 +8,14 @@ const eventDelete = [document.getElementById("remove-1"), document.getElementByI
 const batteryValue = document.getElementById("battery-value");
 const currentBatteryDiv = document.getElementById("current-battery");
 const chargingIcon = document.getElementById("charging-icon");
+const overlay = document.getElementById("overlay");
 let lat;
 let long;
 let timeout;
 let events = JSON.parse(localStorage.getItem("events")) || [];
 console.log("loaded");
 eventDiv.hidden = true;
+overlay.hidden = true;
 document.addEventListener("DOMContentLoaded", () => {
     /*checkVisited();
     if (navigator.permissions) {
@@ -377,12 +379,19 @@ function displayEvents() {
 }
 document.getElementById("close").addEventListener("click", ()=>{
     eventDiv.hidden = true;
+    overlay.hidden = true;
 });
 document.querySelectorAll(".event-add").forEach(button => {
     button.addEventListener("click", ()=>{
         eventDiv.hidden = false;
+        overlay.hidden = false;
     })
 });
+overlay.addEventListener("click", ()=>{
+    eventDiv.hidden = true;
+    overlay.hidden = true;
+    
+})
 /*
 function getBattery() {
     navigator.getBattery()
