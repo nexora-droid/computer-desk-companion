@@ -387,10 +387,11 @@ document.querySelectorAll(".event-add").forEach(button => {
         overlay.hidden = false;
     })
 });
-overlay.addEventListener("click", ()=>{
-    eventDiv.hidden = true;
-    overlay.hidden = true;
-    
+overlay.addEventListener("click", (e)=>{
+    if (e.target == "overlay") {
+        eventDiv.hidden = true;
+        overlay.hidden = true;
+    }
 })
 /*
 function getBattery() {
@@ -449,3 +450,13 @@ for (let i = 0; i < eventDelete.length; i++ ) {
     })
 }
 displayEvents();
+async function getQuote() {
+    const apiUrl = "https://quotetato.vercel.app/api/quotes/random";
+    const response = await fetch(apiUrl);
+    var data = await response.json();
+    const quoteElement = document.getElementById("quote");
+    const authorElement = document.getElementById("author");
+    quoteElement.textContent = data.quote;
+    authorElement.textContent = data.author;
+}
+getQuote();
