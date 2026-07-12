@@ -109,8 +109,17 @@ body {
     padding: 7px;
     border-radius: 4px;
     margin: 0px;
-    border: none;
+    border: 2px solid white;
+    color: white;
+    border-radius: 10px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: rgba(255, 255, 255, 0);
+}
+#event-form input:focus {
+    outline: none;
+}
+#event-form input::placeholder {
+    color: white;
 }
 #event-form label {
     margin: 0px;
@@ -180,7 +189,7 @@ body {
 #row3{
     display: flex;
     flex-direction: row;
-    gap: 0px;
+    gap: 20px;
     width: 100%;
     height: 300px;
 }
@@ -192,7 +201,10 @@ body {
 #right {
     width: 50%;
     height: 100%;
-    padding-right: 40px;
+    padding-right: 10px;
+    overflow-y: scroll;
+    scrollbar-color: white black;
+    margin-right: 80px;
 }
 #quote-title {
     font-size: 30px;
@@ -205,4 +217,68 @@ body {
     text-align: right;
     font-size: 20px;
     font-style: italic;
+}
+#task-inputs {
+    display: flex;
+    gap: 5px;
+    margin-right: 0px;
+}
+#task-name {
+    width: 90%;
+    height: auto;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+}
+#task-name::placeholder {
+    font-style: italic;
+}
+#task-name:hover {
+    border: 2px solid white;
+}
+#task-name:focus {
+    border: 2px solid white;
+    outline: none;
+}
+#task-add {
+    background-color: black;
+    color: white;
+    width: 10%;
+    text-align: center;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+#tasks {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-right: 0px;
+    gap: 10px;
+}
+.task {
+    display: flex;
+    gap: 10px;
+    font-size: 20px;
+    border: 2px solid white;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+}
+.task input {
+    margin: 0px;
+}
+.task-title{
+    margin: 0px;
 }

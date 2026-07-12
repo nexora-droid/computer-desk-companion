@@ -9,6 +9,8 @@ const batteryValue = document.getElementById("battery-value");
 const currentBatteryDiv = document.getElementById("current-battery");
 const chargingIcon = document.getElementById("charging-icon");
 const overlay = document.getElementById("overlay");
+const taskAdd = document.getElementById("task-add");
+const taskName = document.getElementById("task-name");
 let lat;
 let long;
 let timeout;
@@ -380,17 +382,27 @@ function displayEvents() {
 document.getElementById("close").addEventListener("click", ()=>{
     eventDiv.hidden = true;
     overlay.hidden = true;
+    const name = document.getElementById("name");
+    const date = document.getElementById("date");
+    name.value = "";
+    date.value = "";
+
 });
 document.querySelectorAll(".event-add").forEach(button => {
     button.addEventListener("click", ()=>{
         eventDiv.hidden = false;
         overlay.hidden = false;
+        
     })
 });
 overlay.addEventListener("click", (e)=>{
-    if (e.target == "overlay") {
+    if (e.target == overlay) {
         eventDiv.hidden = true;
         overlay.hidden = true;
+        const name = document.getElementById("name");
+        const date = document.getElementById("date");
+        name.value = "";
+        date.value = "";
     }
 })
 /*
