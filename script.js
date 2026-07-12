@@ -11,10 +11,12 @@ const chargingIcon = document.getElementById("charging-icon");
 const overlay = document.getElementById("overlay");
 const taskAdd = document.getElementById("task-add");
 const taskName = document.getElementById("task-name");
+const taskTemplate = document.getElementById("task-template");
 let lat;
 let long;
 let timeout;
 let events = JSON.parse(localStorage.getItem("events")) || [];
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 console.log("loaded");
 eventDiv.hidden = true;
 overlay.hidden = true;
@@ -472,3 +474,46 @@ async function getQuote() {
     authorElement.textContent = data.author;
 }
 getQuote();
+function addTask() {
+    const title = taskName.value;
+    taskName.value = "";
+    const clone = document.importNode(taskTemplate.content, true);
+    clone.querySelector(".task-title").textContent = title;
+    document.getElementById("tasks").appendChild(clone);
+    tasks.push({
+        name: title
+    })
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+taskAdd.addEventListener("click", (e)=>{
+    e.preventDefault();
+    addTask()
+});
+// finish website
+document.addEventListener("click", (event)=>{
+    if (event.target.classList.contains("task-delete")){
+        const taskElement = event.target.closest(".task");
+        const titleToDelete = taskElement.querySelector(".task-title").textContent;
+        taskElement.remove();
+        for (let i = 0; i < tasks.length; i++) {
+            if (tasks[i].name === titleToDelete) {
+                tasks.splice(i, 1);
+                localStorage.setItem("tasks", JSON.stringify(tasks));
+                break;
+            }
+        }
+    }
+})
+function loadTasks() {
+    for (let i = 0; i < tasks.length; i++) {
+        const clone = document.importNode(taskTemplate.content, true);
+        clone.querySelector(".task-title").textContent = tasks[i].name;
+        document.getElementById("tasks").appendChild(clone);
+    }
+}
+loadTasks()
+taskName.addEventListener("keydown", (event)=>{
+    if (event.key === "Enter") {
+        addTask();
+    }
+})
