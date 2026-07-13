@@ -517,3 +517,23 @@ taskName.addEventListener("keydown", (event)=>{
         addTask();
     }
 })
+document.getElementById("switch-bg").addEventListener("click", ()=>{
+    if (document.querySelector(".container")){
+        document.querySelector(".container").classList.add("container-2");
+        document.querySelector(".container").classList.remove("container");
+    } else {
+        document.querySelector(".container-2").classList.add("container");
+        document.querySelector(".container-2").classList.remove("container-2");
+    }
+
+})
+const mouseFollower = document.getElementById("mouse-follower");
+document.body.addEventListener("pointermove", (event)=>{
+    PointerEvent.hidden = true;
+    const {clientX, clientY} = event;
+    mouseFollower.animate({
+        left: `${clientX - 12.5}px`,
+        top: `${clientY - 12.5}px`
+    
+    }, {duration: 0, fill: "forwards"})
+})
