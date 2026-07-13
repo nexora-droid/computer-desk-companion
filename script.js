@@ -20,6 +20,7 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 console.log("loaded");
 eventDiv.hidden = true;
 overlay.hidden = true;
+document.querySelector(".container").classList.remove("container");
 document.addEventListener("DOMContentLoaded", () => {
     /*checkVisited();
     if (navigator.permissions) {
@@ -527,6 +528,15 @@ document.getElementById("switch-bg").addEventListener("click", ()=>{
     }
 
 })
+document.getElementById("turn-off").addEventListener("click", ()=>{
+    if (document.querySelector(".container")){
+        document.querySelector(".container").classList.remove("container");
+    } else if (document.querySelector(".container-2")) {
+        document.getElementById("bg").classList.remove("container-2");
+    } else {
+        document.getElementById("bg").classList.add("container");
+    }
+});
 const mouseFollower = document.getElementById("mouse-follower");
 document.body.addEventListener("pointermove", (event)=>{
     PointerEvent.hidden = true;

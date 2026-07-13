@@ -4,6 +4,7 @@ body {
     margin: 0px;
     overflow: hidden;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    overflow-y: scroll;
 }
 #title {
     text-align: center;
@@ -262,6 +263,13 @@ body {
     padding-right: 10px;
     border: 2px solid white;
     border-radius: 10px;
+}
+@media (max-width: 1000px) {
+    #task-add {
+        padding-left: 0px;
+        font-size: 10px;
+        padding-right: 0px;
+    }
 }
 #tasks {
     display: flex;
@@ -716,7 +724,7 @@ More comprehensive version at shenanigans.shoghisimon.ca/collection/css-rain-bg/
 }
 
 #switch-bg {
-    position: fixed;
+    position: relative;
     z-index: 50;
     width: auto;
     height: 50px;
@@ -730,4 +738,39 @@ More comprehensive version at shenanigans.shoghisimon.ca/collection/css-rain-bg/
     color: white;
     border: 2px solid white;
     border-radius: 15px;
+}
+#turn-off{
+    position: relative;
+    z-index: 50;
+    width: auto;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(5px);
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: large;
+    color: white;
+    border: 2px solid white;
+    border-radius: 15px;
+}
+#top-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: auto;
+    justify-content: space-between;
+}
+.link {
+    text-align: center;
+    font-size: larger;
+    color: white;
+    text-decoration: underline wavy;
+    margin-top: -20px;
+}
+#nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
