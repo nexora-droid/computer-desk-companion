@@ -488,7 +488,11 @@ function addTask() {
 }
 taskAdd.addEventListener("click", (e)=>{
     e.preventDefault();
-    addTask()
+    if (taskName.value === ""){
+        alert("You cannot add an empty task!");
+    } else {
+        addTask()
+    }
 });
 // finish website
 document.addEventListener("click", (event)=>{
