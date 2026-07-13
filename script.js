@@ -482,7 +482,8 @@ function addTask() {
     clone.querySelector(".task-title").textContent = title;
     document.getElementById("tasks").appendChild(clone);
     tasks.push({
-        name: title
+        name: title,
+        completed: false
     })
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
@@ -513,9 +514,21 @@ function loadTasks() {
     for (let i = 0; i < tasks.length; i++) {
         const clone = document.importNode(taskTemplate.content, true);
         clone.querySelector(".task-title").textContent = tasks[i].name;
+        clone.querySelector(".status").checked = tasks[i].completed;
         document.getElementById("tasks").appendChild(clone);
     }
 }
+document.addEventListener("change", (event)=>{
+    if (event.target.classList.contains("status")){
+        const taskElement = event.target.closest(".task");
+        const title = taskElement.querySelector(".task-title").textContent;
+        const task = tasks.find(t => t.name === title);
+        if (task) {
+            task.completed = event.target.checked;
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+    }
+})
 loadTasks()
 taskName.addEventListener("keydown", (event)=>{
     if (event.key === "Enter") {
