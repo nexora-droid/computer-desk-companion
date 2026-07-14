@@ -1,76 +1,279 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productivity Tools</title>
-    <link rel="stylesheet" href="productivity.css">
-</head>
-<body>
-    <div class="container" id="bg"></div>
-    <div id="top-buttons">
-        <button id="switch-bg">Switch BG</button>
-        <button id="turn-off">Toggle BG</button>
-    </div>
-    <p id="title">Productivity Tools</p>
-    <div id="nav">
-        <a href="/index.html" class="link">Dashboard</a>
-    </div>
-    <div id="content">
-        <div class="row" id="row-1">
-            <div id="left">
-                <div id="timer-modes">
-                    <button id="timer-session" class="small-button focus">Session</button>
-                    <button id="timer-sbreak" class="small-button">Short Break</button>
-                    <button id="timer-lbreak" class="small-button">Long break</button>
-                </div>
-                <p id="timer">25:00</p>
-                <div id="timer-buttons">
-                    <button id="timer-start">Start</button>
-                    <button id="timer-stop">Pause</button>
-                    <button id="timer-reset">Reset</button>
-                </div>
-            </div>
-            <div id="right">
-                    <div id="calendar">
-                        <div class="date">1</div>
-                        <div class="date">2</div>
-                        <div class="date">3</div>
-                        <div class="date">4</div>
-                        <div class="date">5</div>
-                        <div class="date">6</div>
-                        <div class="date">7</div>
-                        <div class="date">8</div>
-                        <div class="date">9</div>
-                        <div class="date">10</div>
-                        <div class="date">11</div>
-                        <div class="date">12</div>
-                        <div class="date">13</div>
-                        <div class="date">14</div>
-                        <div class="date">15</div>
-                        <div class="date">16</div>
-                        <div class="date">17</div>
-                        <div class="date">18</div>
-                        <div class="date">19</div>
-                        <div class="date">20</div>
-                        <div class="date">21</div>
-                        <div class="date">22</div>
-                        <div class="date">23</div>
-                        <div class="date">24</div>
-                        <div class="date">25</div>
-                        <div class="date">26</div>
-                        <div class="date">27</div>
-                        <div class="date">28</div>
-                        <div class="date">29</div>
-                        <div class="date">30</div>
-                        <div class="date">31</div>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Productivity Tools</title>
+        <link rel="stylesheet" href="productivity.css">
+    </head>
+    <body>
+        <div class="container" id="bg"></div>
+        <div id="top-buttons">
+            <button id="switch-bg">Switch BG</button>
+            <button id="turn-off">Toggle BG</button>
+        </div>
+        <p id="title">Productivity Tools</p>
+        <div id="nav">
+            <a href="/index.html" class="link">Dashboard</a>
+        </div>
+        <div id="content">
+            <div class="row" id="row-1">
+                <div id="left">
+                    <div id="timer-modes">
+                        <button id="timer-session" class="small-button focus">Session</button>
+                        <button id="timer-sbreak" class="small-button">Short Break</button>
+                        <button id="timer-lbreak" class="small-button">Long break</button>
                     </div>
+                    <p id="timer">25:00</p>
+                    <div id="timer-buttons">
+                        <button id="timer-start">Start</button>
+                        <button id="timer-stop">Pause</button>
+                        <button id="timer-reset">Reset</button>
+                    </div>
+                </div>
+                <div id="right">
+                        <div id="calendar">
+                            <div class="date">
+                                <p>1</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>2</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>3</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>4</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>5</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>6</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>7</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>8</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>9</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>10</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>11</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>12</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>13</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>14</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>15</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>16</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>17</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>18</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>19</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>20</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>21</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>22</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>23</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>24</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>25</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>26</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>27</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>28</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>29</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>30</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <p>31</p>
+                                <div class="events-container">
+                                    <div class="events">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
             </div>
         </div>
-    </div>
-    <template id="template">
-        <div class="date-empty"></div>
-    </template>
-    <script src="productivity.js"></script>
-</body>
-</html>
+        <div id="overlay">
+            <div id="event-div">
+                <div id="buttons">
+                    <button id="close">X</button>
+                </div>
+                <form id="event-form">
+                    <label for="name">Enter Event name</label>
+                    <input type="text" placeholder="Event name..." id="event-name" name="name">
+                    <label for="color">Choose event color</label>
+                    <input type="color" id="event-color" name="color" value="#ff0000">
+                    <input type="submit" value="send" id="send-button">
+                </form>
+            </div>
+        </div>
+        <template id="template">
+            <div class="date-empty"></div>
+        </template>
+        <template id="event-template">
+            <div class="event"></div>
+        </template> 
+        <script src="productivity.js"></script>
+    </body>
+    </html>

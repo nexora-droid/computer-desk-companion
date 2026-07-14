@@ -6,14 +6,27 @@ const break5 = document.getElementById("timer-sbreak");
 const break15 = document.getElementById("timer-lbreak");
 const timer = document.getElementById("timer");
 const calendar = document.getElementById("calendar");
+const eventForm = document.getElementById("event-form");
+const eventDiv = document.getElementById("event-div"); // event-form parent
+const dragBar = document.getElementById("buttons");
+const overlay = document.getElementById("overlay");
+const eventTemplate = document.getElementById("event-template");
+const eventName = document.getElementById("event-name");
+const eventColor = document.getElementById("event-color");
+const eventAdd = document.getElementById("send-button");
+let isDragging = false;
+let offsetX = 0;
+let offsetY = 0;
 let isBgOn = false;
 let isSecondBg = false;
+let dateAddingTo = 0;
 const bg = document.getElementById("bg");
 let remainingSeconds = 1500;
 let breakSeconds = 300; //short break
 let lBreakSeconds = 900; //long break
 let timerInterval = null;
-
+eventDiv.hidden = true;
+overlay.hidden = true;
 document.querySelector(".container").classList.remove("container");
 
 timerStart.addEventListener("click", ()=>{
@@ -50,7 +63,6 @@ function updateSessionTimer() {
     }
 }
 const template = document.getElementById("template");
-const clone = template.content.cloneNode(true);
 function calculateDay() {
     //F = k + ⌊(13m - 1)/5⌋ + D + ⌊D/4⌋ + ⌊C/4⌋ - 2C
     //where k is day of the month, m is month number, d is last 2 digits of the year, c is first 2 digits of year
@@ -110,42 +122,42 @@ function calculateDay() {
             console.log("Sunday");
             break;
         case 1:
-            calendar.prepend(clone);
+            calendar.prepend(template.content.cloneNode(true));
             console.log("Monday");
             break;
         case 2:
-            calendar.prepend(clone);
-            calendar.prepend(clone);
+            calendar.prepend(template.content.cloneNode(true));
+            calendar.prepend(template.content.cloneNode(true));
             console.log("Tuesday");
             break;
         case 3:
-            calendar.prepend(clone);
-            calendar.prepend(clone);
-            calendar.prepend(clone);
+            calendar.prepend(template.content.cloneNode(true));
+            calendar.prepend(template.content.cloneNode(true));
+            calendar.prepend(template.content.cloneNode(true));
             console.log("Wednesday");
             break;
         case 4:
-            calendar.prepend(clone);
-            calendar.prepend(clone);
-            calendar.prepend(clone);
-            calendar.prepend(clone);
+            calendar.prepend(template.content.cloneNode(true));
+            calendar.prepend(template.content.cloneNode(true));
+            calendar.prepend(template.content.cloneNode(true));
+            calendar.prepend(template.content.cloneNode(true));
             console.log("Thursday");
             break;
         case 5:
-            calendar.prepend(clone);
-            calendar.prepend(clone);
-            calendar.prepend(clone);
-            calendar.prepend(clone);
-            calendar.prepend(clone);
+            calendar.prepend(template.content.cloneNode(true));
+            calendar.prepend(template.content.cloneNode(true));
+            calendar.prepend(template.content.cloneNode(true));
+            calendar.prepend(template.content.cloneNode(true));
+            calendar.prepend(template.content.cloneNode(true));
             console.log("Friday");
             break;
         case 6:
-            calendar.prepend(clone);
-            calendar.prepend(clone);
-            calendar.prepend(clone);
-            calendar.prepend(clone);
-            calendar.prepend(clone);
-            calendar.prepend(clone);
+            calendar.prepend(template.content.cloneNode(true));
+            calendar.prepend(template.content.cloneNode(true));
+            calendar.prepend(template.content.cloneNode(true));
+            calendar.prepend(template.content.cloneNode(true));
+            calendar.prepend(template.content.cloneNode(true));
+            calendar.prepend(template.content.cloneNode(true));
             console.log("Saturday");
             break;
         default:
@@ -166,7 +178,7 @@ document.getElementById("turn-off").addEventListener("click", ()=>{
     } else if (bg.classList.contains("container-2")) {
         bg.classList.remove("container-2");
         isBgOn = false;
-    } else if (bg.isSecondBg) {
+    } else if (isSecondBg) {
         bg.classList.add("container-2");
         isBgOn = true;
     } else {
@@ -193,3 +205,60 @@ function saveBgState() {
     }
     localStorage.setItem("bg", JSON.stringify(bgState));
 }
+calendar.addEventListener("click", (event)=>{
+    const dateElement = event.target.closest(".date");  
+    if (!dateElement) {
+        return;
+    }
+    const numberElement = dateElement.querySelector("p");
+    if (numberElement){
+        dateAddingTo = Number(numberElement.textContent);
+        console.log(dateAddingTo);
+    }
+    eventDiv.hidden = false;
+    overlay.hidden = false;
+})
+eventAdd.addEventListener("click", (e)=>{
+    e.preventDefault();
+    const event = {
+        name: eventName,
+        color: eventColor
+    }
+})
+document.getElementById("close").addEventListener("click", ()=>{
+    eventDiv.hidden = true;
+    overlay.hidden = true;
+    const name = document.getElementById("name");
+    const date = document.getElementById("date");
+
+});
+overlay.addEventListener("click", (e)=>{
+    if (e.target == overlay) {
+        eventDiv.hidden = true;
+        overlay.hidden = true;
+        const name = document.getElementById("name");
+        const date = document.getElementById("date");
+        name.value = null;
+        date.value = null;
+    }
+})
+dragBar.addEventListener("mousedown", (e)=>{
+    isDragging = true;
+    e.preventDefault();
+    const rect = eventDiv.getBoundingClientRect();
+    eventDiv.style.left = `${rect.left}px`;
+    eventDiv.style.top = `${rect.top}px`;
+    eventDiv.style.transform = "none";
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+})
+document.addEventListener("mousemove", (e)=>{
+    if (!isDragging) {
+        return;
+    }
+    eventDiv.style.left = `${e.clientX - offsetX}px`
+    eventDiv.style.top = `${e.clientY - offsetY}px`
+})
+document.addEventListener("mouseup", ()=>{
+    isDragging = false;
+})
