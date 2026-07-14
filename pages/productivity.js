@@ -14,6 +14,7 @@ const eventTemplate = document.getElementById("event-template");
 const eventName = document.getElementById("event-name");
 const eventColor = document.getElementById("event-color");
 const eventAdd = document.getElementById("send-button");
+const dates = document.querySelectorAll('.date');
 let isDragging = false;
 let offsetX = 0;
 let offsetY = 0;
@@ -25,6 +26,7 @@ let remainingSeconds = 1500;
 let breakSeconds = 300; //short break
 let lBreakSeconds = 900; //long break
 let timerInterval = null;
+let cEvents = JSON.parse(localStorage.getItem("c-events")) || [];
 eventDiv.hidden = true;
 overlay.hidden = true;
 document.querySelector(".container").classList.remove("container");
@@ -218,13 +220,52 @@ calendar.addEventListener("click", (event)=>{
     eventDiv.hidden = false;
     overlay.hidden = false;
 })
+function addEvent(name, color) {
+    const eventNode = eventTemplate.content.cloneNode(true);
+    const eventElement = eventNode.querySelector(".event");
+    eventElement.style.backgroundColor = color;
+    const targetDiv = Array.from(dates).find(div => {
+        const pElement = Number(div.querySelector("p").textContent);
+        //console.log("Checking ", pElement);
+        return pElement === dateAddingTo;
+    })
+    const eventsDiv = targetDiv.querySelector(".events-container").querySelector(".events");
+    eventsDiv.append(eventNode);
+    cEvents.push({
+        name: eventName.value,
+        color: eventColor.value,
+        date: dateAddingTo
+    })
+    localStorage.setItem("c-events", JSON.stringify(cEvents));
+}
+function loadEvents() {
+    for (let i = 0; i < cEvents.length; i++) {
+        const eventNode = eventTemplate.content.cloneNode(true);
+        const eventElement = eventNode.querySelector(".event");
+        const eName = cEvents[i].name; // for use later (hopefully)
+        const eColor = cEvents[i].color;
+        const eDate = cEvents[i].date;
+        eventElement.style.backgroundColor = eColor;
+        const targetDiv = Array.from(dates).find(div => {
+            const pElement = Number(div.querySelector("p").textContent);
+            //console.log("Checking ", pElement);
+            return pElement === eDate;
+        })
+        const eventsDiv = targetDiv.querySelector(".events-container").querySelector(".events");
+        eventsDiv.append(eventNode);
+    }
+}
 eventAdd.addEventListener("click", (e)=>{
     e.preventDefault();
     const event = {
-        name: eventName,
-        color: eventColor
+        name: eventName.value,
+        color: eventColor.value,
+        date: dateAddingTo
     }
+    addEvent(event.name, event.color);
+    console.log("clicked");
 })
+
 document.getElementById("close").addEventListener("click", ()=>{
     eventDiv.hidden = true;
     overlay.hidden = true;
@@ -262,3 +303,4 @@ document.addEventListener("mousemove", (e)=>{
 document.addEventListener("mouseup", ()=>{
     isDragging = false;
 })
+loadEvents();
