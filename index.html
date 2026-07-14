@@ -1,147 +1,147 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thingondesk</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-</head>
-<body>
-    <!-- From Uiverse.io by SelfMadeSystem --> 
-    <div class="container" id="bg"></div>
-    <div id="top-buttons">
-        <button id="switch-bg">Switch BG</button>
-        <button id="turn-off">Toggle BG</button>
-    </div>
-    <p id="title">Computer</p>
-    <div id="nav">
-        <a href="/pages/productivity.html" class="link">Productivity Tools</a>
-    </div>
-    <div id="content">
-        <div class="row">
-            <div class="widget">
-                <p class="caption">Location</p>
-                <p id="city" class="values">N/A</p>
-                <p id="country">N/A</p>
-            </div>
-            <div class="widget">
-                <p class="caption">Temperature</p>
-                <p id="temp-c" class="values">N/A</p>
-                <p id="temp-f" class="caption">N/A</p>
-            </div>
-            <div class="widget">
-                <p class="caption">Battery</p>
-                <div id="battery-wrapper">
-                    <div id="battery">
-                        <div id="red-battery">
-                            <div id="current-battery">
-                            </div>
-                            <div id="battery-content">
-                                <svg width="30" height="30" viewBox="0 0 24 24" fill="black" id="charging-icon">
-                                    <path d="M13 2L6 13H11L10 22L18 10H13V2Z"/>
-                                </svg>
-                                <p id="battery-value" class="value">50%</p>
-                            </div>  
-                        </div> 
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Thingondesk</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    </head>
+    <body>
+        <!-- From Uiverse.io by SelfMadeSystem --> 
+        <div class="container" id="bg"></div>
+        <div id="top-buttons">
+            <button id="switch-bg">Switch BG</button>
+            <button id="turn-off">Toggle BG</button>
+        </div>
+        <p id="title">Computer</p>
+        <div id="nav">
+            <a href="/pages/productivity.html" class="link">Productivity Tools</a>
+        </div>
+        <div id="content">
+            <div class="row">
+                <div class="widget">
+                    <p class="caption">Location</p>
+                    <p id="city" class="values">N/A</p>
+                    <p id="country">N/A</p>
+                </div>
+                <div class="widget">
+                    <p class="caption">Temperature</p>
+                    <p id="temp-c" class="values">N/A</p>
+                    <p id="temp-f" class="caption">N/A</p>
+                </div>
+                <div class="widget">
+                    <p class="caption">Battery</p>
+                    <div id="battery-wrapper">
+                        <div id="battery">
+                            <div id="red-battery">
+                                <div id="current-battery">
+                                </div>
+                                <div id="battery-content">
+                                    <svg width="30" height="30" viewBox="0 0 24 24" fill="black" id="charging-icon">
+                                        <path d="M13 2L6 13H11L10 22L18 10H13V2Z"/>
+                                    </svg>
+                                    <p id="battery-value" class="value">50%</p>
+                                </div>  
+                            </div> 
+                        </div>
+                        <div id="battery-tip"></div>
                     </div>
-                    <div id="battery-tip"></div>
+                </div>
+                <div class="widget">
+                    <p class="caption">Weather</p>
+                    <p id="w-icon" class="values"><span class="material-symbols-outlined" id="weather-icon">sunny</span></p>
+                    <p id="weather" class="caption">N/A</p>
+                </div>
+                <div class="widget">
+                    <p class="caption">It is...</p>
+                    <p id="t-icon" class="values"><span class="material-symbols-outlined" id="time-icon">pending</span></p>
+                    <p id="daynight" class="caption">Day</p>
                 </div>
             </div>
-            <div class="widget">
-                <p class="caption">Weather</p>
-                <p id="w-icon" class="values"><span class="material-symbols-outlined" id="weather-icon">sunny</span></p>
-                <p id="weather" class="caption">N/A</p>
+            <div class="row">
+                <div class="widget">
+                    <p class="caption" id="event-name-1">No event</p>
+                    <p class="values" id="event-1">---</p>
+                    <div class="event-buttons">
+                        <button class="caption event-button event-add">+</button>
+                        <button class="caption event-button event-remove" id="remove-1">x</button>
+                    </div>
+                </div>
+                <div class="widget">
+                    <p class="caption" id="event-name-2">No event</p>
+                    <p class="values" id="event-2">---</p>
+                    <div class="event-buttons">
+                        <button class="caption event-button event-add">+</button>
+                        <button class="caption event-button event-remove" id="remove-2">x</button>
+                    </div>
+                </div>
+                <div class="widget">
+                    <p class="caption">Time</p>
+                    <p class="values" id="clock"></p>
+                </div>
+                <div class="widget">
+                    <p class="caption" id="event-name-3">No event</p>
+                    <p class="values" id="event-3">---</p>
+                    <div class="event-buttons">
+                        <button class="caption event-button event-add">+</button>
+                        <button class="caption event-button event-remove" id="remove-3">x</button>
+                    </div>
+                </div>
+                <div class="widget">
+                    <p class="caption" id="event-name-4">No event</p>
+                    <p class="values" id="event-4">---</p>
+                    <div class="event-buttons">
+                        <button class="caption event-button event-add">+</button>
+                        <button class="caption event-button event-remove" id="remove-4">x</button>
+                    </div>
+                </div>
             </div>
-            <div class="widget">
-                <p class="caption">It is...</p>
-                <p id="t-icon" class="values"><span class="material-symbols-outlined" id="time-icon">pending</span></p>
-                <p id="daynight" class="caption">Day</p>
+            <div id="row3">
+                <div id="left">
+                    <div id="quotes">
+                        <p id="quote-title">Today's quote</p>
+                        <p id="quote">Quote is loading</p>
+                        <p id="author">~ Developers</p>
+                        <p id="caption">Powered by QuoteSlate API</p>
+                    </div>
+                </div>
+                <div id="right">
+                    <div id="task-inputs">
+                        <input type="text" placeholder="Enter a new task here" name="task-name" id="task-name">
+                        <button type="submit" id="task-add">Add</button>
+                    </div>
+                    <div id="tasks">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="widget">
-                <p class="caption" id="event-name-1">No event</p>
-                <p class="values" id="event-1">---</p>
-                <div class="event-buttons">
-                    <button class="caption event-button event-add">+</button>
-                    <button class="caption event-button event-remove" id="remove-1">x</button>
+        <div id="overlay">
+            <div id="event-div">
+                <div id="buttons">
+                    <button id="close">X</button>
                 </div>
-            </div>
-            <div class="widget">
-                <p class="caption" id="event-name-2">No event</p>
-                <p class="values" id="event-2">---</p>
-                <div class="event-buttons">
-                    <button class="caption event-button event-add">+</button>
-                    <button class="caption event-button event-remove" id="remove-2">x</button>
-                </div>
-            </div>
-            <div class="widget">
-                <p class="caption">Time</p>
-                <p class="values" id="clock"></p>
-            </div>
-            <div class="widget">
-                <p class="caption" id="event-name-3">No event</p>
-                <p class="values" id="event-3">---</p>
-                <div class="event-buttons">
-                    <button class="caption event-button event-add">+</button>
-                    <button class="caption event-button event-remove" id="remove-3">x</button>
-                </div>
-            </div>
-            <div class="widget">
-                <p class="caption" id="event-name-4">No event</p>
-                <p class="values" id="event-4">---</p>
-                <div class="event-buttons">
-                    <button class="caption event-button event-add">+</button>
-                    <button class="caption event-button event-remove" id="remove-4">x</button>
-                </div>
+                <form id="event-form">
+                    <label for="name">Enter Event name</label>
+                    <input type="text" placeholder="Event name..." id="name" name="name">
+                    <label for="date">Enter Date of Event</label>
+                    <input type="date" id="date" name="date">
+                    <input type="submit" value="send" id="send-button">
+                </form>
             </div>
         </div>
-        <div id="row3">
-            <div id="left">
-                <div id="quotes">
-                    <p id="quote-title">Today's quote</p>
-                    <p id="quote">Quote is loading</p>
-                    <p id="author">~ Developers</p>
-                    <p id="caption">Powered by QuoteSlate API</p>
+        <div id="mouse-follower"></div>
+        <template id="task-template">
+            <div class="task">
+                <div class="task-left">
+                    <input type="checkbox" class="status">
+                    <p class="task-title">askjdakjsdhj</p>
+                </div>
+                <div class="task-right">
+                    <button class="task-delete">X</button>
                 </div>
             </div>
-            <div id="right">
-                <div id="task-inputs">
-                    <input type="text" placeholder="Enter a new task here" name="task-name" id="task-name">
-                    <button type="submit" id="task-add">Add</button>
-                </div>
-                <div id="tasks">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="overlay">
-        <div id="event-div">
-            <div id="buttons">
-                <button id="close">X</button>
-            </div>
-            <form id="event-form">
-                <label for="name">Enter Event name</label>
-                <input type="text" placeholder="Event name..." id="name" name="name">
-                <label for="date">Enter Date of Event</label>
-                <input type="date" id="date" name="date">
-                <input type="submit" value="send" id="send-button">
-            </form>
-        </div>
-    </div>
-    <div id="mouse-follower"></div>
-    <template id="task-template">
-        <div class="task">
-            <div class="task-left">
-                <input type="checkbox" class="status">
-                <p class="task-title">askjdakjsdhj</p>
-            </div>
-            <div class="task-right">
-                <button class="task-delete">X</button>
-            </div>
-        </div>
-    </template>
-    <script src="script.js"></script>
-</body>
-</html>
+        </template>
+        <script src="script.js"></script>
+    </body>
+    </html>

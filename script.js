@@ -17,6 +17,9 @@ let long;
 let timeout;
 let events = JSON.parse(localStorage.getItem("events")) || [];
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let isBgOn = false;
+let isSecondBg = false;
+const bg = document.getElementById("bg");
 console.log("loaded");
 eventDiv.hidden = true;
 overlay.hidden = true;
@@ -536,24 +539,45 @@ taskName.addEventListener("keydown", (event)=>{
     }
 })
 document.getElementById("switch-bg").addEventListener("click", ()=>{
-    if (document.querySelector(".container")){
-        document.querySelector(".container").classList.add("container-2");
-        document.querySelector(".container").classList.remove("container");
-    } else {
-        document.querySelector(".container-2").classList.add("container");
-        document.querySelector(".container-2").classList.remove("container-2");
-    }
-
+    bg.classList.toggle("container");
+    bg.classList.toggle("container-2");
+    isSecondBg = bg.classList.contains("container-2");
+    saveBgState();
 })
 document.getElementById("turn-off").addEventListener("click", ()=>{
-    if (document.querySelector(".container")){
-        document.querySelector(".container").classList.remove("container");
-    } else if (document.querySelector(".container-2")) {
-        document.getElementById("bg").classList.remove("container-2");
+    if (bg.classList.contains("container")){
+        bg.classList.remove("container");
+        isBgOn = false;
+    } else if (bg.classList.contains("container-2")) {
+        bg.classList.remove("container-2");
+        isBgOn = false;
+    } else if (bg.isSecondBg) {
+        bg.classList.add("container-2");
+        isBgOn = true;
     } else {
-        document.getElementById("bg").classList.add("container");
+        bg.classList.add("container");
+        isBgOn = true;
     }
+    saveBgState();
 });
+function setBg() {
+    const bgState = JSON.parse(localStorage.getItem("bg"));
+    if (bgState.isBgOn) {
+        if (bgState.isSecondBg) {
+            document.getElementById("bg").classList.add("container-2");
+        } else {
+            document.getElementById("bg").classList.add("container");
+        }
+    } 
+}
+setBg();
+function saveBgState() {
+    const bgState = {
+        isBgOn,
+        isSecondBg
+    }
+    localStorage.setItem("bg", JSON.stringify(bgState));
+}
 const mouseFollower = document.getElementById("mouse-follower");
 document.body.addEventListener("pointermove", (event)=>{
     PointerEvent.hidden = true;
