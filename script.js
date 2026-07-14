@@ -588,3 +588,27 @@ document.body.addEventListener("pointermove", (event)=>{
     
     }, {duration: 0, fill: "forwards"})
 })
+let isDragging = false;
+let offsetX = 0;
+let offsetY = 0;
+const dragBar = document.getElementById("buttons");
+dragBar.addEventListener("mousedown", (e)=>{
+    isDragging = true;
+    e.preventDefault();
+    const rect = eventDiv.getBoundingClientRect();
+    eventDiv.style.left = `${rect.left}px`;
+    eventDiv.style.top = `${rect.top}px`;
+    eventDiv.style.transform = "none";
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+})
+document.addEventListener("mousemove", (e)=>{
+    if (!isDragging) {
+        return;
+    }
+    eventDiv.style.left = `${e.clientX - offsetX}px`
+    eventDiv.style.top = `${e.clientY - offsetY}px`
+})
+document.addEventListener("mouseup", ()=>{
+    isDragging = false;
+})

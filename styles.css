@@ -114,6 +114,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: end;
+    cursor: move;
 }
 #event-form input {
     padding: 7px;
