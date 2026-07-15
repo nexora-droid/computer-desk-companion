@@ -270,7 +270,7 @@
                 </div>
                 <form id="event-form">
                     <label for="name">Enter Event name</label>
-                    <input type="text" placeholder="Event name..." id="event-name" name="name">
+                    <input type="text" placeholder="Event name..." id="event-name" name="name" maxlength="26">
                     <label for="color">Choose event color</label>
                     <input type="color" id="event-color" name="color" value="#ff0000">
                     <input type="submit" value="send" id="send-button">
@@ -283,7 +283,7 @@
                     <button id="edit-close">X</button>
                 </div>
                 <div id="eventInfo">
-                    <p id="name">Placeholder text</p>
+                    <textarea id="name" maxlength="26">Placeholder text</textarea>
                     <input type="color" id="color" name="color">
                 </div>
                 <p id="descp">Event Description:</p>

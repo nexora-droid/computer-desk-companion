@@ -230,7 +230,7 @@ function loadEditEvent(dateToView, colorHex){
     const targetData = Array.from(cEvents).find(data => {
         return data.date === Number(dateToView) && data.color.toLowerCase() === colorHex.toLowerCase();
     })
-    editEventName.textContent = targetData.name;
+    editEventName.value = targetData.name;
     editDescription.value = targetData.description || " ";
     document.getElementById("color").value = targetData.color;
     editSave.addEventListener("click", ()=>{
@@ -238,6 +238,7 @@ function loadEditEvent(dateToView, colorHex){
         targetData.description = description;
         targetData.description = editDescription.value; 
         targetData.color = editEventColor.value;
+        targetData.name = editEventName.value;
         localStorage.setItem("c-events", JSON.stringify(cEvents));
         location.reload();
     })
