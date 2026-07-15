@@ -21,8 +21,9 @@ const editClose = document.getElementById("edit-close");
 const editOverlay = document.getElementById("e-overlay");
 const editEventName = document.getElementById("name");
 const editEventColor = document.getElementById("color");
-const editDescription = document.getElementById("event-desc");
+const editDescription = document.getElementById("eventDesc");
 const editSave = document.getElementById("edit-save");
+const editDelete = document.getElementById("edit-delete");
 let isDraggingEdit = false;
 let isDragging = false;
 let offsetX = 0;
@@ -230,6 +231,27 @@ function loadEditEvent(dateToView, colorHex){
         return data.date === Number(dateToView) && data.color.toLowerCase() === colorHex.toLowerCase();
     })
     editEventName.textContent = targetData.name;
+    editDescription.value = targetData.description || " ";
+    document.getElementById("color").value = targetData.color;
+    editSave.addEventListener("click", ()=>{
+        const description = editDescription.value;
+        targetData.description = description;
+        targetData.description = editDescription.value; 
+        targetData.color = editEventColor.value;
+        localStorage.setItem("c-events", JSON.stringify(cEvents));
+        location.reload();
+    })
+    editDelete.addEventListener("click", ()=>{
+        const toDelete = confirm("This action will permanently delete the event off your calendar, including the colour. You cannot undo this action. Do you still want to proceed?");
+        if (toDelete) {
+            const index = cEvents.indexOf(targetData);
+            if (index !== -1) {
+                cEvents.splice(index, 1);
+            }
+            localStorage.setItem("c-events", JSON.stringify(cEvents));
+            location.reload();
+        }
+    })
 }
 calendar.addEventListener("click", (event)=>{
     if (event.target.classList.contains("event")) {
@@ -263,7 +285,6 @@ calendar.addEventListener("click", (event)=>{
         overlay.hidden = false;
     }
 })
-
 function addEvent(name, color) {
     const eventNode = eventTemplate.content.cloneNode(true);
     const eventElement = eventNode.querySelector(".event");
@@ -310,14 +331,13 @@ eventAdd.addEventListener("click", (e)=>{
     addEvent(event.name, event.color);
     console.log("clicked");
 })
-
 document.getElementById("close").addEventListener("click", ()=>{
     eventDiv.hidden = true;
     overlay.hidden = true;
     const name = document.getElementById("name");
     const ecolor = document.getElementById("event-color");
     name.value = null;
-    ecolor.value = null;
+    ecolor.value = "#ff0000";
 
 });
 overlay.addEventListener("click", (e)=>{
@@ -327,7 +347,7 @@ overlay.addEventListener("click", (e)=>{
         const name = document.getElementById("name");
         const ecolor = document.getElementById("event-color");
         name.value = null;
-        ecolor.value = null;
+        ecolor.value = "#ff0000";
     }
 })
 dragBar.addEventListener("mousedown", (e)=>{
