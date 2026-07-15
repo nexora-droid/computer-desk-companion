@@ -35,7 +35,12 @@ const bg = document.getElementById("bg");
 let remainingSeconds = 1500;
 let breakSeconds = 300; //short break
 let lBreakSeconds = 900; //long break
+let isShortBreak = false;
+let isLongBreak = false;
 let timerInterval = null;
+let breakInterval = null;
+let sessionPause = false;
+let breakPause = false;
 let cEvents = JSON.parse(localStorage.getItem("c-events")) || [];
 eventDiv.hidden = true;
 overlay.hidden = true;
@@ -51,22 +56,76 @@ function rgbToHex(rgb) {
         b.toString(16).padStart(2, "0");
 }
 timerStart.addEventListener("click", ()=>{
-    if (!timerInterval) {
-        timerInterval = setInterval(updateSessionTimer, 1000);
+    if (session.classList.contains("focus")) {
+        if (!timerInterval) {
+            timerInterval = setInterval(updateSessionTimer, 1000);
+        }
+    } else if (break5.classList.contains("focus")) {
+        if (!breakInterval) {
+            breakInterval = setInterval(shortBreak, 1000);
+        }
     }
+
 })
 timerStop.addEventListener("click", ()=> {
-    clearInterval(timerInterval);
-    timerInterval = null;
+    if (session.classList.contains("focus")) {
+        if (sessionPause) {
+            timerInterval = setInterval(updateSessionTimer, 1000);
+            sessionPause = false;
+        } else if (sessionPause === false) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            sessionPause = true;
+        }
+    } else if (break5.classList.contains("focus")) {
+        if (breakPause) {
+            breakInterval = setInterval(shortBreak, 1000);
+            breakPause = false;
+        } else if (breakPause === false) {
+            clearInterval(breakInterval);
+            breakInterval = null;
+            breakPause = true;
+        }
+    }
 })
 timerReset.addEventListener("click", ()=>{
-    clearInterval(timerInterval);
-    timerInterval = null;
-    remainingSeconds = 1500;
-    let minutes = Math.floor(remainingSeconds/60);
-    let seconds = remainingSeconds % 60;
-    timer.textContent = minutes + ":0" + seconds;
+    if (session.classList.contains("focus")) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        remainingSeconds = 1500;
+        let minutes = Math.floor(remainingSeconds/60);
+        let seconds = remainingSeconds % 60;
+        timer.textContent = minutes + ":0" + seconds;
+    } else if (break5.classList.contains("focus")) {
+        clearInterval(breakInterval);
+        breakInterval = null;
+        breakSeconds = 300;
+        let minutes = Math.floor(breakSeconds/60);
+        let seconds = breakSeconds % 60;
+        timer.textContent = "0" + minutes + ":0" + seconds;
+    }
 })
+function shortBreak() {
+    if (!breakInterval) {
+        breakInterval = setInterval(shortBreak, 1000);
+    } else {
+        breakSeconds--;
+        let minutes = Math.floor(breakSeconds/60);
+        let seconds = breakSeconds % 60;
+        if (seconds < 10) {
+            seconds = "0" + (breakSeconds % 60);
+        }
+        if (minutes < 10) {
+            minutes = "0" + (Math.floor(breakSeconds/60));
+        }
+        timer.textContent = minutes + ":" + seconds;
+        if (breakSeconds === 0) {
+            clearInterval(breakInterval);
+            breakInterval = null;
+            isShortBreak = false;
+        }
+    }
+}
 function updateSessionTimer() {
     remainingSeconds--;
     let minutes = Math.floor(remainingSeconds/60);
@@ -81,8 +140,15 @@ function updateSessionTimer() {
     if (remainingSeconds === 0) {
         clearInterval(timerInterval);
         timerInterval = null;
+        isShortBreak = true;
+        break5.classList.add("focus");
+        session.classList.remove("focus");
+        break15.classList.remove("focus");
+        remainingSeconds = 1500;
+        shortBreak();
     }
 }
+
 const template = document.getElementById("template");
 function calculateDay() {
     //F = k + ⌊(13m - 1)/5⌋ + D + ⌊D/4⌋ + ⌊C/4⌋ - 2C
@@ -233,7 +299,7 @@ function loadEditEvent(dateToView, colorHex){
     editEventName.value = targetData.name;
     editDescription.value = targetData.description || " ";
     document.getElementById("color").value = targetData.color;
-    editSave.addEventListener("click", ()=>{
+    editSave.onclick = () => {
         const description = editDescription.value;
         targetData.description = description;
         targetData.description = editDescription.value; 
@@ -241,8 +307,8 @@ function loadEditEvent(dateToView, colorHex){
         targetData.name = editEventName.value;
         localStorage.setItem("c-events", JSON.stringify(cEvents));
         location.reload();
-    })
-    editDelete.addEventListener("click", ()=>{
+    }
+    editDelete.onclick = () => {
         const toDelete = confirm("This action will permanently delete the event off your calendar, including the colour. You cannot undo this action. Do you still want to proceed?");
         if (toDelete) {
             const index = cEvents.indexOf(targetData);
@@ -252,7 +318,7 @@ function loadEditEvent(dateToView, colorHex){
             localStorage.setItem("c-events", JSON.stringify(cEvents));
             location.reload();
         }
-    })
+    }
 }
 calendar.addEventListener("click", (event)=>{
     if (event.target.classList.contains("event")) {
@@ -402,3 +468,27 @@ editOverlay.addEventListener("click", (e)=>{
     }
 })
 loadEvents();
+
+
+
+session.addEventListener("click", ()=>{
+    session.classList.add("focus");
+    break5.classList.remove("focus");
+    break15.classList.remove("focus");
+    remainingSeconds = 1500;
+    timer.textContent = "25:00";
+})
+break5.addEventListener("click", ()=>{
+    session.classList.remove("focus");
+    break5.classList.add("focus");
+    break15.classList.remove("focus");
+    breakSeconds = 300;
+    timer.textContent = "05:00";
+})
+break15.addEventListener("click", ()=>{
+    session.classList.remove("focus");
+    break5.classList.remove("focus");
+    break15.classList.add("focus");
+    lBreakSeconds = 900;
+    timer.textContent = "15:00";
+})
