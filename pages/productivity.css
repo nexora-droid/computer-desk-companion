@@ -1,32 +1,37 @@
 :root {
   --event-bg-color: rgb(255, 79, 79);
 }
+
 body {
-    background-color: black;
-    color: white;
-    margin: 0px;
-    overflow: hidden;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: black;
+  color: white;
+  margin: 0px;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
 #title {
-    text-align: center;
-    font-size: xx-large;
-    font-weight: bold;
-    margin-top: 5px;
+  text-align: center;
+  font-size: xx-large;
+  font-weight: bold;
+  margin-top: 5px;
 }
+
 .link {
-    text-align: center;
-    font-size: larger;
-    color: white;
-    text-decoration: underline wavy;
-    margin-top: -20px;
+  text-align: center;
+  font-size: larger;
+  color: white;
+  text-decoration: underline wavy;
+  margin-top: -20px;
 }
+
 #nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-/* From Uiverse.io by SelfMadeSystem */ 
+
+/* From Uiverse.io by SelfMadeSystem */
 /*
 More comprehensive version at shenanigans.shoghisimon.ca/collection/css-rain-bg/
  */
@@ -36,12 +41,10 @@ More comprehensive version at shenanigans.shoghisimon.ca/collection/css-rain-bg/
   position: absolute;
   inset: 0;
   z-index: 1;
-  background-image: radial-gradient(
-    ellipse 1.5px 2px at 1.5px 50%,
-    #0000 0,
-    #0000 90%,
-    #000 100%
-  );
+  background-image: radial-gradient(ellipse 1.5px 2px at 1.5px 50%,
+      #0000 0,
+      #0000 90%,
+      #000 100%);
   background-size: 25px 8px;
 }
 
@@ -210,12 +213,12 @@ More comprehensive version at shenanigans.shoghisimon.ca/collection/css-rain-bg/
   }
 }
 
-/* From Uiverse.io by marsella_3472 */ 
+/* From Uiverse.io by marsella_3472 */
 /*
 More comprehensive version at shenanigans.shoghisimon.ca/collection/css
  */
 
-/* From Uiverse.io by SelfMadeSystem */ 
+/* From Uiverse.io by SelfMadeSystem */
 /*
 More comprehensive version at shenanigans.shoghisimon.ca/collection/css-rain-bg/
  */
@@ -226,12 +229,10 @@ More comprehensive version at shenanigans.shoghisimon.ca/collection/css-rain-bg/
   inset: 0;
   z-index: -4;
   backdrop-filter: blur(1em) brightness(6);
-  background-image: radial-gradient(
-    circle at 50% 50%,
-    #0000 0,
-    #0000 2px,
-    hsl(0 0 4%) 2px
-  );
+  background-image: radial-gradient(circle at 50% 50%,
+      #0000 0,
+      #0000 2px,
+      hsl(0 0 4%) 2px);
   background-size: 8px 8px;
 }
 
@@ -402,174 +403,194 @@ More comprehensive version at shenanigans.shoghisimon.ca/collection/css-rain-bg/
 }
 
 #switch-bg {
-    position: relative;
-    z-index: 50;
-    width: auto;
-    height: 50px;
-    background-color: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(5px);
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: large;
-    color: white;
-    border: 2px solid white;
-    border-radius: 15px;
+  position: relative;
+  z-index: 50;
+  width: auto;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(5px);
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: large;
+  color: white;
+  border: 2px solid white;
+  border-radius: 15px;
 }
-#turn-off{
-    position: relative;
-    z-index: 50;
-    width: auto;
-    height: 50px;
-    background-color: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(5px);
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: large;
-    color: white;
-    border: 2px solid white;
-    border-radius: 15px;
+
+#turn-off {
+  position: relative;
+  z-index: 50;
+  width: auto;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(5px);
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: large;
+  color: white;
+  border: 2px solid white;
+  border-radius: 15px;
 }
+
 #top-buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    width: auto;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: auto;
+  justify-content: space-between;
 }
+
 .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    height: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 300px;
 }
+
 #row-1 {
-    margin-top: 50px;
+  margin-top: 50px;
 }
+
 #left {
-    width: 40%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
 #right {
-    width: 60%;
-    height: 100%;
-    margin-right: 30px;
+  width: 60%;
+  height: 100%;
+  margin-right: 30px;
 }
+
 #timer {
-    font-size: 100px;
-    margin: 0px;
+  font-size: 100px;
+  margin: 0px;
 }
+
 #timer-start {
-    font-size: 22px;
-    margin: 0px;
-    margin-top: 20px;
-    background-color: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(5px);
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    color: white;
-    border: 2px solid white;
-    border-radius: 10px;
+  font-size: 22px;
+  margin: 0px;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(5px);
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+  border: 2px solid white;
+  border-radius: 10px;
 }
+
 #timer-stop {
-    font-size: 22px;
-    margin: 0px;
-    margin-top: 20px;
-    background-color: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(5px);
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    color: white;
-    border: 2px solid white;
-    border-radius: 10px;
+  font-size: 22px;
+  margin: 0px;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(5px);
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+  border: 2px solid white;
+  border-radius: 10px;
 }
+
 #timer-reset {
-    font-size: 22px;
-    margin: 0px;
-    margin-top: 20px;
-    background-color: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(5px);
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    color: white;
-    border: 2px solid white;
-    border-radius: 10px;
+  font-size: 22px;
+  margin: 0px;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(5px);
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+  border: 2px solid white;
+  border-radius: 10px;
 }
+
 #timer-modes {
-    display: flex;
-    gap: 30px;
-    margin-bottom: 20px;
+  display: flex;
+  gap: 30px;
+  margin-bottom: 20px;
 }
+
 #timer-buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    text-align: center;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  text-align: center;
 }
+
 .small-button {
-    background-color: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(5px);
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: white;
-    border: 2px solid white;
-    border-radius: 10px;
-    font-size: large;
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(5px);
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: white;
+  border: 2px solid white;
+  border-radius: 10px;
+  font-size: large;
 }
+
 .focus {
-    border: 2px solid rgb(34, 197, 94);
-    color: rgb(34, 197, 94);
+  border: 2px solid rgb(34, 197, 94);
+  color: rgb(34, 197, 94);
 }
+
 #calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(6, 1fr) ;
-    margin: 0px;
-    gap: 5px;
-}  
-.date {
-    background-color: rgba(128, 128, 128, 0.47);
-    backdrop-filter: blur(5px);
-    border:  2px solid rgb(255, 255, 255);
-    width: 110px;
-    height: 110px;
-    border-radius: 10px;
-    padding: 5px;
-    font-size: larger;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  margin: 0px;
+  gap: 5px;
 }
+
+.date {
+  background-color: rgba(128, 128, 128, 0.47);
+  backdrop-filter: blur(5px);
+  border: 2px solid rgb(255, 255, 255);
+  width: 110px;
+  height: 110px;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: larger;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
 .date p {
   margin: 0px;
 }
+
 .events-container {
   display: flex;
   flex-direction: column;
   justify-content: start;
 }
+
 .events {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
   gap: 7px;
 }
+
 .event {
   background-color: var(--event-bg-color);
   border-radius: 100%;
@@ -577,47 +598,55 @@ More comprehensive version at shenanigans.shoghisimon.ca/collection/css-rain-bg/
   height: 20px;
   font-size: medium;
 }
+
 .date-empty {
-    background-color: rgba(255, 255, 255, 0.0);
-    width: 110px;
-    height: 110px;
-    border-radius: 10px;
-    padding: 5px;
-    font-size: larger;
+  background-color: rgba(255, 255, 255, 0.0);
+  width: 110px;
+  height: 110px;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: larger;
 }
+
 #overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
 }
+
 #buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    cursor: move;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  cursor: move;
 }
+
 #event-form input {
-    padding: 7px;
-    border-radius: 4px;
-    margin: 0px;
-    border: 2px solid white;
-    color: white;
-    border-radius: 10px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: rgba(255, 255, 255, 0);
+  padding: 7px;
+  border-radius: 4px;
+  margin: 0px;
+  border: 2px solid white;
+  color: white;
+  border-radius: 10px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: rgba(255, 255, 255, 0);
 }
+
 #event-form input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    cursor: pointer;
+  filter: invert(1);
+  cursor: pointer;
 }
-#event-form input[type="color"]{
+
+#event-form input[type="color"] {
   background: none;
   padding: 0px;
 
 }
+
 #event-form input:focus {
   outline: none;
 }
+
 /*
 #event-form input::placeholder {
   color: white;
@@ -625,31 +654,91 @@ More comprehensive version at shenanigans.shoghisimon.ca/collection/css-rain-bg/
 #event-form label {
   margin: 0px;
 }
+
 #event-div {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 5;
-    border: 2px solid white;
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(5px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  border: 2px solid white;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(5px);
 }
+
 #event-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 250px;
-    margin: 25px 75px 50px 75px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 250px;
+  margin: 25px 75px 50px 75px;
 }
+
 #close {
-    background-color: rgb(255, 79, 79);
-    border-radius: 100%;
-    padding: auto;
-    border: none;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    color: white;
+  background-color: rgb(255, 79, 79);
+  border-radius: 100%;
+  padding: auto;
+  border: none;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  color: white;
+}
+
+#e-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+
+#edit-event {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  border: 2px solid white;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(5px);
+  width: 250px;
+  height: 250px;
+  padding: 20px;
+}
+
+#close-buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: end;
+  cursor: move;
+  gap: 10px;
+}
+
+#edit-close {
+  background-color: rgb(255, 79, 79);
+  border-radius: 100%;
+  padding: auto;
+  border: none;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  color: white;
+}
+
+#delete {
+  background-color: rgb(255, 79, 79);
+  border-radius: 100%;
+  padding: auto;
+  border: none;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  color: white;
+}
+
+#color {
+  width: 30px;
+  height: 10px;
+
 }
