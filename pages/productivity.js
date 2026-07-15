@@ -15,6 +15,15 @@ const eventName = document.getElementById("event-name");
 const eventColor = document.getElementById("event-color");
 const eventAdd = document.getElementById("send-button");
 const dates = document.querySelectorAll('.date');
+const editDragBar = document.getElementById("close-buttons");
+const editDiv = document.getElementById("edit-event");
+const editClose = document.getElementById("edit-close");
+const editOverlay = document.getElementById("e-overlay");
+const editEventName = document.getElementById("name");
+const editEventColor = document.getElementById("color");
+const editDescription = document.getElementById("event-desc");
+const editSave = document.getElementById("edit-save");
+let isDraggingEdit = false;
 let isDragging = false;
 let offsetX = 0;
 let offsetY = 0;
@@ -29,8 +38,17 @@ let timerInterval = null;
 let cEvents = JSON.parse(localStorage.getItem("c-events")) || [];
 eventDiv.hidden = true;
 overlay.hidden = true;
+editDiv.hidden = true;
+editOverlay.hidden = true;
 document.querySelector(".container").classList.remove("container");
+function rgbToHex(rgb) {
+    const [r, g, b] = rgb.match(/\d+/g).map(Number);
 
+    return "#" +
+        r.toString(16).padStart(2, "0") +
+        g.toString(16).padStart(2, "0") +
+        b.toString(16).padStart(2, "0");
+}
 timerStart.addEventListener("click", ()=>{
     if (!timerInterval) {
         timerInterval = setInterval(updateSessionTimer, 1000);
@@ -207,19 +225,45 @@ function saveBgState() {
     }
     localStorage.setItem("bg", JSON.stringify(bgState));
 }
+function loadEditEvent(dateToView, colorHex){
+    const targetData = Array.from(cEvents).find(data => {
+        return data.date === Number(dateToView) && data.color.toLowerCase() === colorHex.toLowerCase();
+    })
+    editEventName.textContent = targetData.name;
+}
 calendar.addEventListener("click", (event)=>{
-    const dateElement = event.target.closest(".date");  
-    if (!dateElement) {
-        return;
+    if (event.target.classList.contains("event")) {
+        // event editing, viewing, deleting bla bla bla
+        const eventPressed = event.target;
+        //console.log(eventPressed);
+        const eventsDiv = eventPressed.parentElement;
+        const eventDateDiv = eventsDiv.parentElement.parentElement;
+        //console.log(eventDateDiv);
+        const dateViewing = eventDateDiv.querySelector("p").textContent;
+        const eventColor = eventPressed.style.backgroundColor;
+        const eventColorHex = rgbToHex(eventColor);
+        //console.log(dateViewing);
+        const targetData = Array.from(cEvents).find(data => {
+            return data.date === Number(dateViewing) && data.color.toLowerCase() === eventColorHex.toLowerCase();
+        })
+        editDiv.hidden = false;
+        editOverlay.hidden = false;
+        loadEditEvent(dateViewing, eventColorHex);
+    } else {
+        const dateElement = event.target.closest(".date");  
+        if (!dateElement) {
+            return;
+        }
+        const numberElement = dateElement.querySelector("p");
+        if (numberElement){
+            dateAddingTo = Number(numberElement.textContent);
+            console.log(dateAddingTo);
+        }
+        eventDiv.hidden = false;
+        overlay.hidden = false;
     }
-    const numberElement = dateElement.querySelector("p");
-    if (numberElement){
-        dateAddingTo = Number(numberElement.textContent);
-        console.log(dateAddingTo);
-    }
-    eventDiv.hidden = false;
-    overlay.hidden = false;
 })
+
 function addEvent(name, color) {
     const eventNode = eventTemplate.content.cloneNode(true);
     const eventElement = eventNode.querySelector(".event");
@@ -234,7 +278,8 @@ function addEvent(name, color) {
     cEvents.push({
         name: eventName.value,
         color: eventColor.value,
-        date: dateAddingTo
+        date: dateAddingTo,
+        description: null
     })
     localStorage.setItem("c-events", JSON.stringify(cEvents));
 }
@@ -270,7 +315,9 @@ document.getElementById("close").addEventListener("click", ()=>{
     eventDiv.hidden = true;
     overlay.hidden = true;
     const name = document.getElementById("name");
-    const date = document.getElementById("date");
+    const ecolor = document.getElementById("event-color");
+    name.value = null;
+    ecolor.value = null;
 
 });
 overlay.addEventListener("click", (e)=>{
@@ -278,9 +325,9 @@ overlay.addEventListener("click", (e)=>{
         eventDiv.hidden = true;
         overlay.hidden = true;
         const name = document.getElementById("name");
-        const date = document.getElementById("date");
+        const ecolor = document.getElementById("event-color");
         name.value = null;
-        date.value = null;
+        ecolor.value = null;
     }
 })
 dragBar.addEventListener("mousedown", (e)=>{
@@ -302,5 +349,35 @@ document.addEventListener("mousemove", (e)=>{
 })
 document.addEventListener("mouseup", ()=>{
     isDragging = false;
+})
+editDragBar.addEventListener("mousedown", (e)=>{
+    isDraggingEdit = true;
+    e.preventDefault();
+    const rect = editDiv.getBoundingClientRect();
+    editDiv.style.left = `${rect.left}px`;
+    editDiv.style.top = `${rect.top}px`;
+    editDiv.style.transform = "none";
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+})
+document.addEventListener("mousemove", (e)=>{
+    if (!isDraggingEdit) {
+        return;
+    }
+    editDiv.style.left = `${e.clientX - offsetX}px`
+    editDiv.style.top = `${e.clientY - offsetY}px`
+})
+document.addEventListener("mouseup", ()=>{
+    isDraggingEdit = false;
+})
+editClose.addEventListener("click", ()=>{
+    editDiv.hidden = true;
+    editOverlay.hidden = true;
+})
+editOverlay.addEventListener("click", (e)=>{
+    if (e.target === editOverlay) {
+        editDiv.hidden = true;
+        editOverlay.hidden = true;
+    }
 })
 loadEvents();
