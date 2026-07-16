@@ -25,6 +25,9 @@ const editDescription = document.getElementById("eventDesc");
 const editSave = document.getElementById("edit-save");
 const editDelete = document.getElementById("edit-delete");
 const alarmBell = new Audio("/audio/alarm-bell.mp3");
+const date29 = document.getElementById("date-29");
+const date30 = document.getElementById("date-30");
+const date31 = document.getElementById("date-31");
 let isDraggingEdit = false;
 let isDragging = false;
 let offsetX = 0;
@@ -232,12 +235,14 @@ function calculateDay() {
             break;
         case 3: // april
             monthNumber = 2;
+            date31.hidden = true;
             break;
         case 4: // may
             monthNumber = 3;
             break;
         case 5: // june
             monthNumber = 4;
+            date31.hidden = true;
             break;
         case 6: // july
             monthNumber = 5;
@@ -247,12 +252,14 @@ function calculateDay() {
             break;
         case 8: // september
             monthNumber = 7;
+            date31.hidden = true;
             break;
         case 9: // october
             monthNumber = 8;
             break;
         case 10: // november
             monthNumber = 9;
+            date31.hidden = true;
             break;
         case 11: // december
             monthNumber = 10;
@@ -262,6 +269,9 @@ function calculateDay() {
             break;
         case 1: // feburary
             monthNumber = 12;
+            date29.hidden = true;
+            date30.hidden = true;
+            date31.hidden = true;
             break;
         default:
             break;
