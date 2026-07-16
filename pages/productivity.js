@@ -24,6 +24,7 @@ const editEventColor = document.getElementById("color");
 const editDescription = document.getElementById("eventDesc");
 const editSave = document.getElementById("edit-save");
 const editDelete = document.getElementById("edit-delete");
+const alarmBell = new Audio("/audio/alarm-bell.mp3");
 let isDraggingEdit = false;
 let isDragging = false;
 let offsetX = 0;
@@ -39,8 +40,11 @@ let isShortBreak = false;
 let isLongBreak = false;
 let timerInterval = null;
 let breakInterval = null;
+let lBreakInterval = null;
 let sessionPause = false;
 let breakPause = false;
+let lBreakPause = false;
+let noSessions = 0; // number of sessions
 let cEvents = JSON.parse(localStorage.getItem("c-events")) || [];
 eventDiv.hidden = true;
 overlay.hidden = true;
@@ -64,6 +68,10 @@ timerStart.addEventListener("click", ()=>{
         if (!breakInterval) {
             breakInterval = setInterval(shortBreak, 1000);
         }
+    } else if (break15.classList.contains("focus")) {
+        if (!lBreakInterval) {
+            lBreakInterval = setInterval(longBreak, 1000);
+        }
     }
 
 })
@@ -86,6 +94,15 @@ timerStop.addEventListener("click", ()=> {
             breakInterval = null;
             breakPause = true;
         }
+    } else if (break15.classList.contains("focus")) {
+        if (lBreakPause) {
+            lBreakInterval = setInterval(longBreak, 1000);
+            lBreakPause = false
+        } else if (lBreakPause === false) {
+            clearInterval(lBreakInterval);
+            lBreakInterval = null;
+            lBreakPause = true;
+        }
     }
 })
 timerReset.addEventListener("click", ()=>{
@@ -103,6 +120,13 @@ timerReset.addEventListener("click", ()=>{
         let minutes = Math.floor(breakSeconds/60);
         let seconds = breakSeconds % 60;
         timer.textContent = "0" + minutes + ":0" + seconds;
+    } else if (break15.classList.contains("focus")) {
+        clearInterval(lBreakInterval);
+        lBreakInterval = null;
+        lBreakSeconds = 900;
+        let minutes = Math.floor(lBreakSeconds/60);
+        let seconds = lBreakSeconds % 60;
+        timer.textContent = minutes + ":0" + seconds;
     }
 })
 function shortBreak() {
@@ -123,6 +147,41 @@ function shortBreak() {
             clearInterval(breakInterval);
             breakInterval = null;
             isShortBreak = false;
+            breakSeconds = 300;
+            alarmBell.play();
+            break5.classList.remove("focus");
+            session.classList.add("focus");
+            let minutes = Math.floor(remainingSeconds/60);
+            let seconds = remainingSeconds % 60;
+            timer.textContent = minutes + ":0" + seconds;
+        }
+    }
+}
+function longBreak() {
+    if (!lBreakInterval) {
+        breakInterval = setInterval(longBreak, 1000);
+    } else {
+        lBreakSeconds--;
+        let minutes = Math.floor(lBreakSeconds/60);
+        let seconds = lBreakSeconds % 60;
+        if (seconds < 10) {
+            seconds = "0" + (lBreakSeconds % 60);
+        }
+        if (minutes < 10) {
+            minutes = "0" + (Math.floor(lBreakSeconds/60));
+        }
+        timer.textContent = minutes + ":" + seconds;
+        if (lBreakSeconds === 0) {
+            clearInterval(lBreakInterval);
+            lBreakInterval = null;
+            isLongBreak = false;
+            lBreakSeconds = 900;
+            alarmBell.play();
+            break15.classList.remove("focus");
+            session.classList.add("focus");
+            let minutes = Math.floor(remainingSeconds/60);
+            let seconds = remainingSeconds % 60;
+            timer.textContent = "0" + minutes + ":0" + seconds;
         }
     }
 }
@@ -141,11 +200,18 @@ function updateSessionTimer() {
         clearInterval(timerInterval);
         timerInterval = null;
         isShortBreak = true;
-        break5.classList.add("focus");
         session.classList.remove("focus");
-        break15.classList.remove("focus");
+        if (noSessions === 4) {
+            timer.textContent = "15:00";
+            break15.classList.add("focus");
+            noSessions = 0;
+        } else {
+            noSessions++;
+            break5.classList.add("focus");
+            timer.textContent = "05:00";
+        }
         remainingSeconds = 1500;
-        shortBreak();
+        alarmBell.play();
     }
 }
 
@@ -468,9 +534,6 @@ editOverlay.addEventListener("click", (e)=>{
     }
 })
 loadEvents();
-
-
-
 session.addEventListener("click", ()=>{
     session.classList.add("focus");
     break5.classList.remove("focus");
