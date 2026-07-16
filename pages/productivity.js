@@ -592,7 +592,7 @@ function speakPosture() {
     speechSynthesis.speak(postureSpeech);
 }
 function getWaterProgress() {
-    const interval = 2000; //  1800000 or 300000
+    const interval = 1800000; //  1800000 or 300000
     const elapsed = Date.now() - lastWaterReminder;
     return Math.min(elapsed / interval, 1);
 }
@@ -601,7 +601,7 @@ function updateWaterProgress() {
     waterCircle.style.strokeDashoffset = circumference * (1 - progress);
 }
 function getPostureProgress() {
-    const interval = 3000; // 1200000 or 420000
+    const interval = 1200000; // 1200000 or 420000
     const elapsed = Date.now() - lastPostureReminder;
     return Math.min(elapsed / interval, 1);
 }
@@ -611,5 +611,16 @@ function updatePostureProgress() {
 }
 setInterval(updateWaterProgress, 1000);
 setInterval(updatePostureProgress, 1000);
-setInterval(speakWater, 2000);
-setInterval(speakPosture, 3000);
+setInterval(speakWater, 1800000);
+setInterval(speakPosture, 1200000);
+
+const mouseFollower = document.getElementById("mouse-follower");
+document.body.addEventListener("pointermove", (event)=>{
+    PointerEvent.hidden = true;
+    const {clientX, clientY} = event;
+    mouseFollower.animate({
+        left: `${clientX - 12.5}px`,
+        top: `${clientY - 12.5}px`
+    
+    }, {duration: 0, fill: "forwards"})
+})
