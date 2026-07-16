@@ -634,3 +634,7 @@ document.body.addEventListener("pointermove", (event)=>{
     
     }, {duration: 0, fill: "forwards"})
 })
+eventAdd.addEventListener("click", ()=>{
+    eventForm.hidden = true;
+    overlay.hidden = true;
+})
