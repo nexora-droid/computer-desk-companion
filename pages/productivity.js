@@ -555,3 +555,41 @@ break15.addEventListener("click", ()=>{
     lBreakSeconds = 900;
     timer.textContent = "15:00";
 })
+const waterReminder = document.getElementById("water-reminder");
+const postureReminder = document.getElementById("posture-reminder");
+const waterSpeech = new SpeechSynthesisUtterance("Drink water!");
+const postureSpeech = new SpeechSynthesisUtterance("Sit straight!");
+const waterCircle = document.getElementById("water-circle");
+const postureCircle = document.getElementById("posture-circle");
+let lastWaterReminder = Date.now();
+let lastPostureReminder = Date.now();
+const circumference = 564.48; // from svg in html
+function speakWater() {
+    speechSynthesis.speak(waterSpeech);
+    lastWaterReminder = Date.now();
+}
+function speakPosture() {
+    speechSynthesis.speak(postureSpeech);
+}
+function getWaterProgress() {
+    const interval = 1800000; //  1800000 or 300000
+    const elapsed = Date.now() - lastWaterReminder;
+    return Math.min(elapsed / interval, 1);
+}
+function updateWaterProgress() {
+    const progress = getWaterProgress();
+    waterCircle.style.strokeDashoffset = circumference * (1 - progress);
+}
+function getPostureProgress() {
+    const interval = 1200000;
+    const elapsed = Date.now() - lastPostureReminder;
+    return Math.min(elapsed / interval, 1);
+}
+function updatePostureProgress() {
+    const progress = getPostureProgress();
+    postureCircle.style.strokeDashoffset = circumference * (1 - progress);
+}
+setInterval(updateWaterProgress, 1000);
+setInterval(updatePostureProgress, 1000);
+setInterval(speakWater, 1800000);
+setInterval(speakPosture, 1200000);
