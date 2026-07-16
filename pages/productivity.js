@@ -159,7 +159,7 @@ function shortBreak() {
 }
 function longBreak() {
     if (!lBreakInterval) {
-        breakInterval = setInterval(longBreak, 1000);
+        lBreakInterval = setInterval(longBreak, 1000);
     } else {
         lBreakSeconds--;
         let minutes = Math.floor(lBreakSeconds/60);
@@ -534,25 +534,45 @@ editOverlay.addEventListener("click", (e)=>{
     }
 })
 loadEvents();
+function clearAllIntervals() {
+    clearInterval(timerInterval);
+    clearInterval(breakInterval);
+    clearInterval(lBreakInterval);
+    timerInterval = null;
+    breakInterval = null;
+    lBreakInterval = null;
+}
 session.addEventListener("click", ()=>{
     session.classList.add("focus");
     break5.classList.remove("focus");
     break15.classList.remove("focus");
+    //remainingSeconds = 1500;
+    //timer.textContent = "25:00";
+    clearAllIntervals();
     remainingSeconds = 1500;
+    sessionPause = false;
     timer.textContent = "25:00";
 })
 break5.addEventListener("click", ()=>{
     session.classList.remove("focus");
     break5.classList.add("focus");
     break15.classList.remove("focus");
+    //breakSeconds = 300;
+    //timer.textContent = "05:00";
+    clearAllIntervals();
     breakSeconds = 300;
+    breakPause = false;
     timer.textContent = "05:00";
 })
 break15.addEventListener("click", ()=>{
     session.classList.remove("focus");
     break5.classList.remove("focus");
     break15.classList.add("focus");
+    //lBreakSeconds = 900;
+    //timer.textContent = "15:00";
+    clearAllIntervals();
     lBreakSeconds = 900;
+    lBreakPause = false;
     timer.textContent = "15:00";
 })
 const waterReminder = document.getElementById("water-reminder");
@@ -572,7 +592,7 @@ function speakPosture() {
     speechSynthesis.speak(postureSpeech);
 }
 function getWaterProgress() {
-    const interval = 1800000; //  1800000 or 300000
+    const interval = 2000; //  1800000 or 300000
     const elapsed = Date.now() - lastWaterReminder;
     return Math.min(elapsed / interval, 1);
 }
@@ -581,7 +601,7 @@ function updateWaterProgress() {
     waterCircle.style.strokeDashoffset = circumference * (1 - progress);
 }
 function getPostureProgress() {
-    const interval = 1200000;
+    const interval = 3000; // 1200000 or 420000
     const elapsed = Date.now() - lastPostureReminder;
     return Math.min(elapsed / interval, 1);
 }
@@ -591,5 +611,5 @@ function updatePostureProgress() {
 }
 setInterval(updateWaterProgress, 1000);
 setInterval(updatePostureProgress, 1000);
-setInterval(speakWater, 1800000);
-setInterval(speakPosture, 1200000);
+setInterval(speakWater, 2000);
+setInterval(speakPosture, 3000);
